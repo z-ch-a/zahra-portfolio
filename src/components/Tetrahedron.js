@@ -75,11 +75,11 @@ function createFaceTexture(label) {
   ctx.fillStyle = "#150908";
   ctx.fillRect(0, 0, size, size);
 
-  for (let y = 0; y < size; y += 5) {
-    for (let x = 0; x < size; x += 5) {
+  for (let y = 0; y < size; y += 3.5) {
+    for (let x = 0; x < size; x += 3) {
       if (Math.random() > 0.58) {
-        ctx.globalAlpha = Math.random() * 0.35;
-        ctx.fillStyle = "#ff7b6e";
+        ctx.globalAlpha = Math.random() * 0.70;
+        ctx.fillStyle = "#3571f37a";
         ctx.fillRect(x, y, 2, 2);
       }
     }
