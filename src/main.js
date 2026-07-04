@@ -8,6 +8,11 @@ document.querySelector('#app').innerHTML = `
       <p>ARCHITECT & COMPUTATIONAL DESIGNER</p>
     </header>
 
+    <div class="stars"></div>
+    <div class="skyline"></div>
+    <div class="horizon"></div>
+    <div class="grid"></div>
+
     <canvas id="scene"></canvas>
   </main>
 `

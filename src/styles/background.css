@@ -1,0 +1,66 @@
+.stars::before {
+  content: "+";
+  position: absolute;
+  top: 22%;
+  left: 18%;
+  color: #008f7a;
+  font-size: 22px;
+  text-shadow: 0 0 8px #008f7a;
+}
+
+.stars::after {
+  content: "+";
+  position: absolute;
+  top: 38%;
+  right: 20%;
+  color: #008f7a;
+  font-size: 26px;
+  text-shadow: 0 0 8px #008f7a;
+}
+
+.skyline {
+  position: absolute;
+  left: 0;
+  bottom: 24vh;
+  width: 100%;
+  height: 22vh;
+  background: linear-gradient(to top, rgba(255, 123, 110, 0.9), transparent);
+  opacity: 0.75;
+  z-index: 2;
+  clip-path: polygon(
+    0% 100%, 0% 75%, 4% 75%, 4% 62%, 8% 62%, 8% 82%,
+    13% 82%, 13% 55%, 17% 55%, 17% 78%, 22% 78%,
+    22% 42%, 26% 42%, 26% 86%, 31% 86%, 31% 66%,
+    37% 66%, 37% 84%, 43% 84%, 43% 52%, 48% 52%,
+    48% 88%, 54% 88%, 54% 70%, 60% 70%, 60% 86%,
+    66% 86%, 66% 58%, 71% 58%, 71% 90%, 77% 90%,
+    77% 64%, 83% 64%, 83% 44%, 88% 44%, 88% 72%,
+    94% 72%, 94% 56%, 100% 56%, 100% 100%
+  );
+}
+
+.horizon {
+  position: absolute;
+  left: 0;
+  bottom: 24vh;
+  width: 100%;
+  height: 4px;
+  background: #ff7b6e;
+  box-shadow: 0 0 16px #ff7b6e, 0 0 36px #ff7b6e;
+  z-index: 3;
+}
+
+.grid {
+  position: absolute;
+  left: -10%;
+  bottom: -8vh;
+  width: 120%;
+  height: 36vh;
+  background-image:
+    linear-gradient(rgba(255, 123, 110, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 123, 110, 0.5) 1px, transparent 1px);
+  background-size: 80px 38px;
+  transform: perspective(420px) rotateX(62deg);
+  transform-origin: top;
+  z-index: 1;
+}
