@@ -1,0 +1,25 @@
+.hero {
+  position: absolute;
+  top: 8vh;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.hero h1 {
+  font-size: clamp(24px, 4vw, 56px);
+  color: white;
+  letter-spacing: 5px;
+  font-family: 'Silkscreen', 'Press Start 2P', monospace;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.hero p {
+  margin-top: 20px;
+  color: #f6a9a2;
+  font-size: clamp(8px, 1.1vw, 15px);
+  letter-spacing: 3px;
+  font-family: 'VT323', monospace;
+  text-shadow: 0 0 8px rgba(246, 169, 162, 0.8);
+}
