@@ -13,6 +13,11 @@ body {
   color: white;
   font-family: 'Press Start 2P', monospace;
   overflow: hidden;
+  cursor: url("/cursors/arrow.svg") 1 3, auto;
+}
+
+body.grabbing-cursor {
+  cursor: url("/cursors/hand-closed.svg") 14 14, grabbing;
 }
 
 .homepage {
@@ -28,6 +33,7 @@ body {
   position: absolute;
   inset: 0;
   z-index: 5;
+  cursor: url("/cursors/hand-open.svg") 14 14, grab;
 }
 
 .stars {
@@ -99,7 +105,7 @@ body {
   bottom: 24vh;
   width: 100%;
   height: 4px;
-  background: #ff7b6e;
+  background: #fc9289;
   box-shadow: 0 0 16px #ff7b6e, 0 0 32px #ff7b6e;
   z-index: 3;
 }
@@ -112,8 +118,8 @@ body {
   height: 36vh;
   z-index: 1;
   background-image:
-    linear-gradient(rgba(255, 123, 110, 0.5) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 123, 110, 0.5) 1px, transparent 1px);
+    linear-gradient(rgba(253, 191, 186, 0.623) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 181, 174, 0.753) 1px, transparent 1px);
   background-size: 80px 38px;
   transform: perspective(420px) rotateX(62deg);
   transform-origin: top;
