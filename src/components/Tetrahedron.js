@@ -85,10 +85,10 @@ function createFaceTexture(label) {
     }
   }
 
-  ctx.globalAlpha = 0.06;
-  ctx.fillStyle = "#ffd2c8";
+  ctx.globalAlpha = 0.05;
+  ctx.fillStyle = "#fab0a1cb";
 
-  for (let y = 0; y < size; y += 9) {
+  for (let y = 0; y < size; y += 5) {
     ctx.fillRect(0, y, size, 1);
   }
 
