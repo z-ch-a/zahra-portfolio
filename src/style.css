@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import './styles/background.css';
 @import './styles/hero.css';
+@import "./styles/intro.css";
 
 * {
   margin: 0;
@@ -123,4 +124,38 @@ body.grabbing-cursor {
   background-size: 80px 38px;
   transform: perspective(420px) rotateX(62deg);
   transform-origin: top;
+}
+
+/* ===========================
+   RETRO PIXEL CURSOR
+=========================== */
+
+*,
+*::before,
+*::after {
+  cursor: url("/cursors/cursor.svg") 0 0, auto !important;
+}
+
+/* Cursor while dragging */
+body.grabbing-cursor,
+body.grabbing-cursor *,
+body.grabbing-cursor *::before,
+body.grabbing-cursor *::after {
+  cursor: url("/cursors/cursor-click.svg") 0 0, grabbing !important;
+}
+
+/* Keep the same cursor over clickable elements */
+a,
+button,
+canvas,
+input,
+textarea,
+select {
+  cursor: url("/cursors/cursor.svg") 0 0, pointer !important;
+}
+
+a:hover,
+button:hover,
+canvas:hover {
+  cursor: url("/cursors/cursor.svg") 0 0, pointer !important;
 }
