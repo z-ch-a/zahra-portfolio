@@ -166,7 +166,7 @@ export function startIntroScreen() {
       textElement.textContent += character;
       createMechanicalKeySound(character);
 
-      let typingDelay = 115 + Math.random() * 75;
+      let typingDelay = 35 + Math.random() * 10;
 
       if (character === ",") {
         typingDelay = 300;
