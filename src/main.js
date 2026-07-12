@@ -13,10 +13,16 @@ import {
   startTetrahedronScene,
 } from "./components/Tetrahedron";
 
+import {
+  createProjectsPage,
+  startProjectsPage,
+} from "./components/ProjectsPage";
+
 document.querySelector("#app").innerHTML = `
   ${createIntroScreen()}
+  ${createProjectsPage()}
 
-  <main class="homepage">
+  <main class="homepage" id="homepage">
     ${createBackground()}
     ${createHero()}
     ${createTetrahedron()}
@@ -25,3 +31,4 @@ document.querySelector("#app").innerHTML = `
 
 startTetrahedronScene();
 startIntroScreen();
+startProjectsPage();

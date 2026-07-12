@@ -25,7 +25,8 @@ function drawPixelText(ctx, text, x, y, scale = 2.1) {
   const spacing = 4;
 
   const totalWidth =
-    text.length * letterWidth * scale + (text.length - 1) * spacing * scale;
+    text.length * letterWidth * scale +
+    (text.length - 1) * spacing * scale;
 
   let startX = x - totalWidth / 2;
 
@@ -43,15 +44,25 @@ function drawPixelText(ctx, text, x, y, scale = 2.1) {
           const px = startX + col * scale;
           const py = y + row * scale;
 
-          ctx.globalAlpha = 0.10;
+          ctx.globalAlpha = 0.1;
           ctx.fillStyle = "#ff2f2f";
-          ctx.fillRect(px - 5, py - 5, scale + 10, scale + 10);
+          ctx.fillRect(
+            px - 5,
+            py - 5,
+            scale + 10,
+            scale + 10
+          );
 
-          ctx.globalAlpha = 0.80;
+          ctx.globalAlpha = 0.8;
           ctx.fillStyle = "#58e6ff";
-          ctx.fillRect(px - 2, py - 2, scale + 4, scale + 4);
+          ctx.fillRect(
+            px - 2,
+            py - 2,
+            scale + 4,
+            scale + 4
+          );
 
-          ctx.globalAlpha = 0.90;
+          ctx.globalAlpha = 0.9;
           ctx.fillStyle = "#ffffff";
           ctx.fillRect(px, py, scale, scale);
         }
@@ -67,6 +78,7 @@ function drawPixelText(ctx, text, x, y, scale = 2.1) {
 function createFaceTexture(label) {
   const size = 256;
   const canvas = document.createElement("canvas");
+
   canvas.width = size;
   canvas.height = size;
 
@@ -78,7 +90,7 @@ function createFaceTexture(label) {
   for (let y = 0; y < size; y += 3.5) {
     for (let x = 0; x < size; x += 3) {
       if (Math.random() > 0.58) {
-        ctx.globalAlpha = Math.random() * 0.70;
+        ctx.globalAlpha = Math.random() * 0.7;
         ctx.fillStyle = "#3571f37a";
         ctx.fillRect(x, y, 2, 2);
       }
@@ -99,6 +111,7 @@ function createFaceTexture(label) {
   }
 
   const texture = new THREE.CanvasTexture(canvas);
+
   texture.magFilter = THREE.NearestFilter;
   texture.minFilter = THREE.NearestFilter;
   texture.needsUpdate = true;
@@ -109,13 +122,27 @@ function createFaceTexture(label) {
 function createNeonEdge(start, end, group) {
   const direction = new THREE.Vector3().subVectors(end, start);
   const length = direction.length();
-  const midpoint = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
 
-  const coreGeometry = new THREE.CylinderGeometry(0.01, 0.01, length, 8);
-  const glowGeometry = new THREE.CylinderGeometry(0.055, 0.055, length, 12);
+  const midpoint = new THREE.Vector3()
+    .addVectors(start, end)
+    .multiplyScalar(0.5);
+
+  const coreGeometry = new THREE.CylinderGeometry(
+    0.01,
+    0.01,
+    length,
+    8
+  );
+
+  const glowGeometry = new THREE.CylinderGeometry(
+    0.055,
+    0.055,
+    length,
+    12
+  );
 
   const coreMaterial = new THREE.MeshBasicMaterial({
-    color: 0x7FCBFF,
+    color: 0x7fcbff,
   });
 
   const glowMaterial = new THREE.MeshBasicMaterial({
@@ -130,6 +157,7 @@ function createNeonEdge(start, end, group) {
   const glow = new THREE.Mesh(glowGeometry, glowMaterial);
 
   const quaternion = new THREE.Quaternion();
+
   quaternion.setFromUnitVectors(
     new THREE.Vector3(0, 1, 0),
     direction.clone().normalize()
@@ -152,7 +180,14 @@ function createFace(points, label, group) {
 
   geometry.setAttribute(
     "uv",
-    new THREE.Float32BufferAttribute([0.5, 1, 0, 0, 1, 0], 2)
+    new THREE.Float32BufferAttribute(
+      [
+        0.5, 1,
+        0, 0,
+        1, 0,
+      ],
+      2
+    )
   );
 
   geometry.computeVertexNormals();
@@ -160,16 +195,20 @@ function createFace(points, label, group) {
   const material = new THREE.MeshBasicMaterial({
     map: createFaceTexture(label),
     transparent: true,
-    opacity: 0.90,
+    opacity: 0.9,
     side: THREE.DoubleSide,
     depthWrite: false,
     color: new THREE.Color(0xfff0ea),
-
-    blending: THREE.NormalBlending
+    blending: THREE.NormalBlending,
   });
 
   const mesh = new THREE.Mesh(geometry, material);
+
+  mesh.userData.page = label.toLowerCase();
+
   group.add(mesh);
+
+  return mesh;
 }
 
 export function startTetrahedronScene() {
@@ -192,27 +231,61 @@ export function startTetrahedronScene() {
     antialias: false,
   });
 
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+  );
+
   renderer.setPixelRatio(1);
 
   const group = new THREE.Group();
+
   scene.add(group);
 
-  const baseScale = 0.70;
-  group.scale.set(baseScale, baseScale, baseScale);
+  const baseScale = 0.7;
+
+  group.scale.set(
+    baseScale,
+    baseScale,
+    baseScale
+  );
 
   const top = new THREE.Vector3(0, 1.1, 0);
   const left = new THREE.Vector3(-1.5, -1.0, 0.8);
   const right = new THREE.Vector3(1.5, -1.0, 0.8);
   const back = new THREE.Vector3(0, -1.0, -1.5);
 
-    createFace([top, left, right], "CONTACT", group, 0xffb4a2);
+  const clickableFaces = [];
 
-    createFace([top, right, back], "PROJECTS", group, 0xff8c7a);
+  clickableFaces.push(
+    createFace(
+      [top, left, right],
+      "CONTACT",
+      group
+    )
+  );
 
-    createFace([top, back, left], "ABOUT", group, 0xff9f88);
+  clickableFaces.push(
+    createFace(
+      [top, right, back],
+      "PROJECTS",
+      group
+    )
+  );
 
-    createFace([left, back, right], "", group, 0xff7055);
+  clickableFaces.push(
+    createFace(
+      [top, back, left],
+      "ABOUT",
+      group
+    )
+  );
+
+  createFace(
+    [left, back, right],
+    "",
+    group
+  );
 
   const edges = [
     [top, left],
@@ -231,68 +304,185 @@ export function startTetrahedronScene() {
   group.rotation.y = 0;
 
   let isDragging = false;
+  let mouseStartedOnCanvas = false;
+
   let previousX = 0;
   let previousY = 0;
+
+  let mouseDownX = 0;
+  let mouseDownY = 0;
+
   let velocityX = 0;
   let velocityY = 0;
 
+  const raycaster = new THREE.Raycaster();
+  const pointer = new THREE.Vector2();
+
   canvas.addEventListener("mousedown", (event) => {
     isDragging = true;
+    mouseStartedOnCanvas = true;
+
     previousX = event.clientX;
     previousY = event.clientY;
-    document.body.classList.add("grabbing-cursor");
+
+    mouseDownX = event.clientX;
+    mouseDownY = event.clientY;
+
+    document.body.classList.add(
+      "grabbing-cursor"
+    );
   });
 
   window.addEventListener("mousemove", (event) => {
     if (!isDragging) return;
 
-    const deltaX = event.clientX - previousX;
-    const deltaY = event.clientY - previousY;
+    const deltaX =
+      event.clientX - previousX;
+
+    const deltaY =
+      event.clientY - previousY;
 
     previousX = event.clientX;
     previousY = event.clientY;
 
     const rotationSpeed = 0.005;
 
-    velocityY = deltaX * rotationSpeed;
-    velocityX = deltaY * rotationSpeed;
+    velocityY =
+      deltaX * rotationSpeed;
+
+    velocityX =
+      deltaY * rotationSpeed;
 
     group.rotation.y += velocityY;
     group.rotation.x += velocityX;
   });
 
-  window.addEventListener("mouseup", () => {
+  window.addEventListener("mouseup", (event) => {
+    if (!mouseStartedOnCanvas) return;
+
+    const movementX = Math.abs(
+      event.clientX - mouseDownX
+    );
+
+    const movementY = Math.abs(
+      event.clientY - mouseDownY
+    );
+
     isDragging = false;
-    document.body.classList.remove("grabbing-cursor");
+    mouseStartedOnCanvas = false;
+
+    document.body.classList.remove(
+      "grabbing-cursor"
+    );
+
+    if (movementX < 6 && movementY < 6) {
+      detectFaceClick(event);
+    }
   });
 
-  canvas.addEventListener("touchstart", (event) => {
-    isDragging = true;
-    previousX = event.touches[0].clientX;
-    previousY = event.touches[0].clientY;
-  });
+  function detectFaceClick(event) {
+    const canvasBounds =
+      canvas.getBoundingClientRect();
 
-  window.addEventListener("touchmove", (event) => {
-    if (!isDragging) return;
+    pointer.x =
+      ((event.clientX - canvasBounds.left) /
+        canvasBounds.width) *
+        2 -
+      1;
 
-    const deltaX = event.touches[0].clientX - previousX;
-    const deltaY = event.touches[0].clientY - previousY;
+    pointer.y =
+      -(
+        (event.clientY - canvasBounds.top) /
+        canvasBounds.height
+      ) *
+        2 +
+      1;
 
-    previousX = event.touches[0].clientX;
-    previousY = event.touches[0].clientY;
+    raycaster.setFromCamera(
+      pointer,
+      camera
+    );
 
-    const rotationSpeed = 0.005;
+    const intersections =
+      raycaster.intersectObjects(
+        clickableFaces,
+        false
+      );
 
-    velocityY = deltaX * rotationSpeed;
-    velocityX = deltaY * rotationSpeed;
+    if (intersections.length === 0) return;
 
-    group.rotation.y += velocityY;
-    group.rotation.x += velocityX;
-  });
+    const clickedPage =
+      intersections[0].object.userData.page;
 
-  window.addEventListener("touchend", () => {
-    isDragging = false;
-  });
+    if (clickedPage === "projects") {
+      openProjectsPage();
+    }
+  }
+
+  function openProjectsPage() {
+    const homepage =
+      document.querySelector("#homepage");
+
+    const projectsPage =
+      document.querySelector("#projects-page");
+
+    if (!homepage || !projectsPage) return;
+
+    homepage.style.display = "none";
+    projectsPage.hidden = false;
+  }
+
+  canvas.addEventListener(
+    "touchstart",
+    (event) => {
+      isDragging = true;
+
+      previousX =
+        event.touches[0].clientX;
+
+      previousY =
+        event.touches[0].clientY;
+    }
+  );
+
+  window.addEventListener(
+    "touchmove",
+    (event) => {
+      if (!isDragging) return;
+
+      const deltaX =
+        event.touches[0].clientX -
+        previousX;
+
+      const deltaY =
+        event.touches[0].clientY -
+        previousY;
+
+      previousX =
+        event.touches[0].clientX;
+
+      previousY =
+        event.touches[0].clientY;
+
+      const rotationSpeed = 0.005;
+
+      velocityY =
+        deltaX * rotationSpeed;
+
+      velocityX =
+        deltaY * rotationSpeed;
+
+      group.rotation.y += velocityY;
+      group.rotation.x += velocityX;
+    }
+  );
+
+  window.addEventListener(
+    "touchend",
+    () => {
+      isDragging = false;
+    }
+  );
 
   function animate() {
     requestAnimationFrame(animate);
@@ -307,7 +497,8 @@ export function startTetrahedronScene() {
       velocityX *= 0.95;
     }
 
-    group.position.y = Math.sin(t * 1.1) * 0.055;
+    group.position.y =
+      Math.sin(t * 1.1) * 0.055;
 
     renderer.render(scene, camera);
   }
@@ -315,8 +506,15 @@ export function startTetrahedronScene() {
   animate();
 
   window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect =
+      window.innerWidth /
+      window.innerHeight;
+
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    renderer.setSize(
+      window.innerWidth,
+      window.innerHeight
+    );
   });
 }
