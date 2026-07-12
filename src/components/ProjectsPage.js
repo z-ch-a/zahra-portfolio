@@ -2,27 +2,33 @@ import "../styles/projects.css";
 
 const projects = [
   {
-    title: "Project One",
-    subtitle: "Short description of the project",
+    title: "The Vena",
+    subtitle: "Beyond printed objects toward architectural systems",
     year: "2026",
     image: "",
   },
   {
-    title: "Project Two",
-    subtitle: "Short description of the project",
-    year: "2026",
+    title: "NEXXUS",
+    subtitle: "Advanced Design & Fabrication of a Free-form Shading System",
+    year: "2024",
+    image: "",
+  },
+   {
+    title: "FlexCo",
+    subtitle: "Mixed-use commercial and coworking hub",
+    year: "2022",
     image: "",
   },
   {
-    title: "Project Three",
-    subtitle: "Short description of the project",
-    year: "2025",
+    title: "ISF",
+    subtitle: "Research on Incremental sheet froming",
+    year: "2024",
     image: "",
   },
   {
-    title: "Project Four",
-    subtitle: "Short description of the project",
-    year: "2025",
+    title: "CatEscape",
+    subtitle: "Material-Adaptive Design System",
+    year: "2024",
     image: "",
   },
   {
@@ -146,7 +152,7 @@ export function createProjectsPage() {
           type="button"
           aria-label="Previous project"
         >
-          ◀
+          &lt;&lt;
         </button>
 
         <button
@@ -155,7 +161,7 @@ export function createProjectsPage() {
           type="button"
           aria-label="Next project"
         >
-          ▶
+          &gt;&gt;
         </button>
       </div>
     </section>
