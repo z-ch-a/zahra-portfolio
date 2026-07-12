@@ -1,25 +1,61 @@
-.hero {
+.home-hero {
   position: absolute;
-  top: 8vh;
-  left: 0;
-  width: 100%;
+  top: clamp(34px, 6vh, 72px);
+  left: 50%;
+  z-index: 20;
+
+  width: min(1100px, 90vw);
+
   text-align: center;
-  z-index: 10;
+
+  transform: translateX(-50%);
+
+  pointer-events: none;
 }
 
-.hero h1 {
-  font-size: clamp(24px, 4vw, 56px);
-  color: white;
-  letter-spacing: 5px;
-  font-family: 'Silkscreen', 'Press Start 2P', monospace;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+.home-title {
+  margin: 0;
+
+  color: rgba(240, 243, 242, 0.96);
+
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(22px, 3.3vw, 50px);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: clamp(3px, 0.55vw, 9px);
+
+  text-shadow:
+    0 0 3px rgba(255, 255, 255, 0.22),
+    0 0 10px rgba(88, 230, 255, 0.08);
 }
 
-.hero p {
-  margin-top: 20px;
-  color: #f6a9a2;
-  font-size: clamp(8px, 1.1vw, 15px);
-  letter-spacing: 3px;
-  font-family: 'VT323', monospace;
-  text-shadow: 0 0 8px rgba(246, 169, 162, 0.8);
+.home-subtitle {
+  margin: 16px 0 0;
+
+  color: rgba(206, 211, 209, 0.48);
+
+  font-family: "Share Tech Mono", monospace;
+  font-size: clamp(11px, 1.1vw, 15px);
+  line-height: 1.4;
+  letter-spacing: clamp(2px, 0.35vw, 6px);
+
+  text-shadow: none;
+}
+
+@media (max-width: 700px) {
+  .home-hero {
+    top: 30px;
+    width: 88vw;
+  }
+
+  .home-title {
+    font-size: clamp(18px, 6vw, 28px);
+    letter-spacing: 3px;
+  }
+
+  .home-subtitle {
+    margin-top: 12px;
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
 }

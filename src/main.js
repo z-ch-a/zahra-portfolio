@@ -1,6 +1,11 @@
 import "./style.css";
 
 import {
+  createMainMenu,
+  startMainMenu,
+} from "./components/MainMenu";
+
+import {
   createIntroScreen,
   startIntroScreen,
 } from "./components/IntroScreen";
@@ -25,10 +30,10 @@ document.querySelector("#app").innerHTML = `
   <main class="homepage" id="homepage">
     ${createBackground()}
     ${createHero()}
-    ${createTetrahedron()}
+    ${createMainMenu()}
   </main>
 `;
 
-startTetrahedronScene();
+startMainMenu();
 startIntroScreen();
 startProjectsPage();

@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-@import './styles/background.css';
-@import './styles/hero.css';
-@import "./styles/intro.css";
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap");
 
+@import "./styles/background.css";
+@import "./styles/hero.css";
+@import "./styles/tetrahedron.css";
+@import "./styles/intro.css";
+@import "./styles/menu.css";
 * {
   margin: 0;
   padding: 0;

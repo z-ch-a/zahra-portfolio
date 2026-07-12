@@ -1,13 +1,13 @@
 export function createHero() {
-    return `
-        <header class="hero">
+  return `
+    <header class="home-hero">
+      <h1 class="home-title">
+        ZAHRA CHERAGH NIA
+      </h1>
 
-            <h1>ZAHRA CHERAGH NIA</h1>
-
-            <p>
-                ARCHITECT & COMPUTATIONAL DESIGNER
-            </p>
-
-        </header>
-    `
+      <p class="home-subtitle">
+        ARCHITECT & COMPUTATIONAL DESIGNER
+      </p>
+    </header>
+  `;
 }

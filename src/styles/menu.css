@@ -1,0 +1,145 @@
+.main-menu {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  z-index: 20;
+
+  width: min(420px, 82vw);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+
+  transform: translate(-50%, -50%);
+}
+
+.main-menu-item {
+  position: relative;
+
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  align-items: center;
+
+  padding: 4px 0;
+
+  border: 0;
+  background: transparent;
+
+  color: rgba(220, 224, 223, 0.4);
+
+  text-align: left;
+
+  transition:
+    color 0.14s steps(2, end),
+    transform 0.14s steps(2, end);
+}
+
+.main-menu-selector {
+  color: transparent;
+
+  font-family: "Press Start 2P", monospace;
+  font-size: 14px;
+
+  transition:
+    color 0.14s steps(2, end),
+    text-shadow 0.14s steps(2, end);
+}
+
+.main-menu-label {
+  position: relative;
+
+  display: inline-block;
+
+  width: max-content;
+
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(16px, 2vw, 25px);
+  line-height: 1.4;
+  letter-spacing: 4px;
+}
+
+.main-menu-label::before,
+.main-menu-label::after {
+  content: attr(data-text);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.main-menu-label::before {
+  color: #00eaff;
+}
+
+.main-menu-label::after {
+  color: #ff008c;
+}
+
+.main-menu-item--active {
+  color: rgba(255, 255, 255, 0.96);
+
+  transform: translateX(8px);
+}
+
+.main-menu-item--active
+.main-menu-selector {
+  color: #8eefff;
+
+  text-shadow:
+    0 0 5px rgba(0, 234, 255, 0.5);
+}
+
+.main-menu-item--active
+.main-menu-label {
+  text-shadow:
+    0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+.main-menu-item--active
+.main-menu-label::before {
+  opacity: 0.48;
+
+  transform: translateX(-3px);
+
+  clip-path: inset(14% 0 62% 0);
+}
+
+.main-menu-item--active
+.main-menu-label::after {
+  opacity: 0.44;
+
+  transform: translateX(3px);
+
+  clip-path: inset(58% 0 12% 0);
+}
+
+.main-menu-item:hover {
+  color: #ffffff;
+}
+
+.main-menu-item:focus-visible {
+  outline: none;
+}
+
+@media (max-width: 700px) {
+  .main-menu {
+    top: 49%;
+    width: 78vw;
+    gap: 15px;
+  }
+
+  .main-menu-item {
+    grid-template-columns: 26px 1fr;
+  }
+
+  .main-menu-label {
+    font-size: clamp(13px, 4vw, 18px);
+    letter-spacing: 3px;
+  }
+}
