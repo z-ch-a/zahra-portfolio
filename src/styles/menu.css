@@ -1,145 +1,147 @@
 .main-menu {
   position: absolute;
   left: 50%;
-  top: 48%;
+  top: 45%;
   z-index: 20;
 
-  width: min(420px, 82vw);
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 18px;
+  width: min(430px, 80vw);
 
   transform: translate(-50%, -50%);
+}
+
+.main-menu-header {
+  width: 100%;
+  margin-bottom: 22px;
+  padding-bottom: 11px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  color: rgba(180, 190, 193, 0.34);
+
+  font-family: "Share Tech Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+
+.main-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .main-menu-item {
   position: relative;
 
   width: 100%;
+  min-height: 51px;
 
   display: grid;
-  grid-template-columns: 32px 1fr;
+  grid-template-columns: 31px 1fr;
   align-items: center;
 
-  padding: 4px 0;
+  padding: 0 14px 0 8px;
 
-  border: 0;
+  border: 1px solid transparent;
+  border-radius: 2px;
+
   background: transparent;
 
-  color: rgba(220, 224, 223, 0.4);
+  color: rgba(210, 215, 215, 0.32);
 
   text-align: left;
 
   transition:
-    color 0.14s steps(2, end),
-    transform 0.14s steps(2, end);
+    color 0.16s ease,
+    background 0.16s ease,
+    border-color 0.16s ease,
+    transform 0.16s ease;
 }
 
 .main-menu-selector {
   color: transparent;
 
-  font-family: "Press Start 2P", monospace;
-  font-size: 14px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 21px;
+  line-height: 1;
 
   transition:
-    color 0.14s steps(2, end),
-    text-shadow 0.14s steps(2, end);
+    color 0.16s ease,
+    transform 0.16s ease;
 }
 
 .main-menu-label {
-  position: relative;
-
-  display: inline-block;
-
-  width: max-content;
-
   font-family: "Press Start 2P", monospace;
-  font-size: clamp(16px, 2vw, 25px);
+  font-size: clamp(13px, 1.25vw, 17px);
   line-height: 1.4;
-  letter-spacing: 4px;
-}
-
-.main-menu-label::before,
-.main-menu-label::after {
-  content: attr(data-text);
-
-  position: absolute;
-  left: 0;
-  top: 0;
-
-  opacity: 0;
-  pointer-events: none;
-}
-
-.main-menu-label::before {
-  color: #00eaff;
-}
-
-.main-menu-label::after {
-  color: #ff008c;
+  letter-spacing: 2px;
 }
 
 .main-menu-item--active {
-  color: rgba(255, 255, 255, 0.96);
+  color: rgba(245, 247, 246, 0.93);
 
-  transform: translateX(8px);
+  border-color: rgba(255, 255, 255, 0.12);
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(112, 169, 193, 0.1),
+      rgba(112, 169, 193, 0.025)
+    );
+
+  transform: translateX(4px);
 }
 
-.main-menu-item--active
-.main-menu-selector {
-  color: #8eefff;
+.main-menu-item--active .main-menu-selector {
+  color: rgba(147, 207, 229, 0.92);
+
+  transform: translateX(2px);
 
   text-shadow:
-    0 0 5px rgba(0, 234, 255, 0.5);
-}
-
-.main-menu-item--active
-.main-menu-label {
-  text-shadow:
-    0 0 3px rgba(255, 255, 255, 0.25);
-}
-
-.main-menu-item--active
-.main-menu-label::before {
-  opacity: 0.48;
-
-  transform: translateX(-3px);
-
-  clip-path: inset(14% 0 62% 0);
-}
-
-.main-menu-item--active
-.main-menu-label::after {
-  opacity: 0.44;
-
-  transform: translateX(3px);
-
-  clip-path: inset(58% 0 12% 0);
+    0 0 6px rgba(112, 185, 213, 0.28);
 }
 
 .main-menu-item:hover {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.94);
+
+  border-color: rgba(255, 255, 255, 0.1);
+
+  background:
+    rgba(255, 255, 255, 0.025);
 }
 
 .main-menu-item:focus-visible {
-  outline: none;
+  outline:
+    1px solid rgba(139, 197, 219, 0.4);
+
+  outline-offset: 2px;
 }
 
 @media (max-width: 700px) {
   .main-menu {
-    top: 49%;
-    width: 78vw;
-    gap: 15px;
+    top: 50%;
+    width: 80vw;
+  }
+
+  .main-menu-header {
+    margin-bottom: 17px;
+    font-size: 8px;
   }
 
   .main-menu-item {
+    min-height: 47px;
+
     grid-template-columns: 26px 1fr;
+
+    padding-left: 5px;
   }
 
   .main-menu-label {
-    font-size: clamp(13px, 4vw, 18px);
-    letter-spacing: 3px;
+    font-size: clamp(11px, 3.4vw, 15px);
+    letter-spacing: 1.5px;
   }
 }

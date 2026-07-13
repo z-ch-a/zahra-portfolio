@@ -1,22 +1,22 @@
 import "./style.css";
 
 import {
-  createMainMenu,
-  startMainMenu,
-} from "./components/MainMenu";
-
-import {
   createIntroScreen,
   startIntroScreen,
 } from "./components/IntroScreen";
 
-import { createBackground } from "./components/Background";
-import { createHero } from "./components/Hero";
+import {
+  createBackground,
+} from "./components/Background";
 
 import {
-  createTetrahedron,
-  startTetrahedronScene,
-} from "./components/Tetrahedron";
+  createHero,
+} from "./components/Hero";
+
+import {
+  createMainMenu,
+  startMainMenu,
+} from "./components/MainMenu";
 
 import {
   createProjectsPage,
@@ -27,13 +27,16 @@ document.querySelector("#app").innerHTML = `
   ${createIntroScreen()}
   ${createProjectsPage()}
 
-  <main class="homepage" id="homepage">
+  <main
+    class="homepage"
+    id="homepage"
+  >
     ${createBackground()}
     ${createHero()}
     ${createMainMenu()}
   </main>
 `;
 
-startMainMenu();
 startIntroScreen();
 startProjectsPage();
+startMainMenu();

@@ -29,11 +29,14 @@ export function createMainMenu() {
           data-menu-index="${index}"
           data-page="${item.page}"
         >
-          <span class="main-menu-selector" aria-hidden="true">
+          <span
+            class="main-menu-selector"
+            aria-hidden="true"
+          >
             &gt;
           </span>
 
-          <span class="main-menu-label" data-text="${item.label}">
+          <span class="main-menu-label">
             ${item.label}
           </span>
         </button>
@@ -47,7 +50,14 @@ export function createMainMenu() {
       id="main-menu"
       aria-label="Portfolio navigation"
     >
-      ${items}
+      <div class="main-menu-header">
+        <span>SELECT DESTINATION</span>
+        <span>01 / 04</span>
+      </div>
+
+      <div class="main-menu-list">
+        ${items}
+      </div>
     </nav>
   `;
 }
@@ -61,6 +71,10 @@ export function startMainMenu() {
     menu.querySelectorAll(".main-menu-item")
   );
 
+  const counter = menu.querySelector(
+    ".main-menu-header span:last-child"
+  );
+
   if (!items.length) return;
 
   let activeIndex = 0;
@@ -70,11 +84,25 @@ export function startMainMenu() {
       (index + items.length) % items.length;
 
     items.forEach((item, itemIndex) => {
+      const isActive =
+        itemIndex === activeIndex;
+
       item.classList.toggle(
         "main-menu-item--active",
-        itemIndex === activeIndex
+        isActive
+      );
+
+      item.setAttribute(
+        "aria-current",
+        isActive ? "page" : "false"
       );
     });
+
+    if (counter) {
+      counter.textContent =
+        `${String(activeIndex + 1).padStart(2, "0")} / ` +
+        `${String(items.length).padStart(2, "0")}`;
+    }
   }
 
   function openPage(pageName) {

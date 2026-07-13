@@ -1,10 +1,10 @@
 .home-hero {
   position: absolute;
-  top: clamp(34px, 6vh, 72px);
+  top: clamp(34px, 5.2vh, 58px);
   left: 50%;
   z-index: 20;
 
-  width: min(1100px, 90vw);
+  width: min(1400px, 94vw);
 
   text-align: center;
 
@@ -16,46 +16,53 @@
 .home-title {
   margin: 0;
 
-  color: rgba(240, 243, 242, 0.96);
+  color: rgba(243, 245, 244, 0.96);
 
   font-family: "Press Start 2P", monospace;
-  font-size: clamp(22px, 3.3vw, 50px);
+  font-size: clamp(24px, 3.1vw, 50px);
   font-weight: 400;
-  line-height: 1.35;
-  letter-spacing: clamp(3px, 0.55vw, 9px);
+  line-height: 1.25;
+  letter-spacing: clamp(3px, 0.42vw, 7px);
+
+  white-space: nowrap;
 
   text-shadow:
-    0 0 3px rgba(255, 255, 255, 0.22),
-    0 0 10px rgba(88, 230, 255, 0.08);
+    0 0 3px rgba(255, 255, 255, 0.15);
 }
 
 .home-subtitle {
-  margin: 16px 0 0;
+  margin: 18px 0 0;
 
-  color: rgba(206, 211, 209, 0.48);
+  color: rgba(190, 199, 201, 0.42);
 
   font-family: "Share Tech Mono", monospace;
-  font-size: clamp(11px, 1.1vw, 15px);
+  font-size: clamp(10px, 0.92vw, 14px);
   line-height: 1.4;
-  letter-spacing: clamp(2px, 0.35vw, 6px);
+  letter-spacing: clamp(3px, 0.32vw, 6px);
 
-  text-shadow: none;
+  text-transform: uppercase;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .home-hero {
-    top: 30px;
-    width: 88vw;
+    top: 34px;
+    width: 94vw;
   }
 
   .home-title {
-    font-size: clamp(18px, 6vw, 28px);
+    font-size: clamp(19px, 5.2vw, 34px);
     letter-spacing: 3px;
   }
 
   .home-subtitle {
-    margin-top: 12px;
-    font-size: 10px;
+    margin-top: 14px;
+    font-size: 9px;
     letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-title {
+    white-space: normal;
   }
 }
