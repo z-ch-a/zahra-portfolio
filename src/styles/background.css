@@ -5,29 +5,81 @@
 
   overflow: hidden;
 
-  background:
-    linear-gradient(
-      to bottom,
-      #000000 0%,
-      #010104 48%,
-      #08071a 73%,
-      #130b31 100%
-    );
+  background: #02040d;
 
   pointer-events: none;
 }
 
-/* ===========================
-   STARS
-=========================== */
+/* ========================================
+   SKY
+======================================== */
 
-.home-stars {
+.pixel-sky {
   position: absolute;
-  inset: 0;
-  z-index: 1;
+  inset: 0 0 23vh;
+  z-index: 0;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #050718 0%,
+      #090d2a 23%,
+      #11194a 46%,
+      #1d2b67 66%,
+      #30477c 82%,
+      #526b91 100%
+    );
 }
 
-.home-star {
+.pixel-sky::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.17;
+
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.045) 0,
+      rgba(255, 255, 255, 0.045) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+}
+
+.sunset-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 38%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(84, 107, 164, 0) 0%,
+      rgba(72, 100, 161, 0.22) 30%,
+      rgba(68, 104, 166, 0.42) 66%,
+      rgba(111, 143, 185, 0.5) 100%
+    );
+}
+
+/* ========================================
+   STARS
+======================================== */
+
+.city-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.city-star {
   position: absolute;
   left: var(--star-left);
   top: var(--star-top);
@@ -35,186 +87,974 @@
   width: var(--star-size);
   height: var(--star-size);
 
-  background: rgba(225, 230, 255, 0.68);
+  background: rgba(239, 246, 255, 0.94);
 
   box-shadow:
-    0 0 3px rgba(151, 185, 255, 0.28);
-
-  transform: translate(-50%, -50%);
+    0 0 3px rgba(125, 187, 239, 0.42);
 
   animation:
-    home-star-blink
+    city-star-blink
     var(--star-duration)
     steps(2, end)
     var(--star-delay)
     infinite;
 }
 
-/* ===========================
-   HORIZON GLOW
-=========================== */
+.city-cross-star {
+  position: absolute;
+  left: var(--star-left);
+  top: var(--star-top);
 
-.home-horizon {
+  width: 11px;
+  height: 11px;
+
+  animation:
+    city-cross-star-blink
+    5.4s
+    steps(2, end)
+    var(--star-delay)
+    infinite;
+}
+
+.city-cross-star::before,
+.city-cross-star::after {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  background: rgba(217, 239, 255, 0.94);
+
+  transform: translate(-50%, -50%);
+
+  box-shadow:
+    0 0 5px rgba(104, 177, 239, 0.5);
+}
+
+.city-cross-star::before {
+  width: 11px;
+  height: 1px;
+}
+
+.city-cross-star::after {
+  width: 1px;
+  height: 11px;
+}
+
+@keyframes city-star-blink {
+  0%,
+  42% {
+    opacity: 0.16;
+  }
+
+  43%,
+  70% {
+    opacity: 0.96;
+  }
+
+  71%,
+  100% {
+    opacity: 0.34;
+  }
+}
+
+@keyframes city-cross-star-blink {
+  0%,
+  44% {
+    opacity: 0.18;
+    transform: scale(0.82);
+  }
+
+  45%,
+  70% {
+    opacity: 0.92;
+    transform: scale(1);
+  }
+
+  71%,
+  100% {
+    opacity: 0.32;
+    transform: scale(0.88);
+  }
+}
+
+/* ========================================
+   CLOUDS
+======================================== */
+
+.city-clouds {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  opacity: 0.22;
+}
+
+.pixel-cloud {
+  position: absolute;
+  left: var(--cloud-left);
+  top: var(--cloud-top);
+
+  width: var(--cloud-width);
+  height: 30px;
+
+  animation:
+    cloud-drift
+    26s
+    linear
+    var(--cloud-delay)
+    infinite alternate;
+}
+
+.pixel-cloud span {
+  position: absolute;
+
+  height: 5px;
+
+  background: rgba(123, 150, 199, 0.5);
+}
+
+.pixel-cloud span:nth-child(1) {
+  left: 0;
+  top: 14px;
+  width: 54%;
+}
+
+.pixel-cloud span:nth-child(2) {
+  left: 18%;
+  top: 7px;
+  width: 58%;
+}
+
+.pixel-cloud span:nth-child(3) {
+  right: 0;
+  top: 20px;
+  width: 46%;
+}
+
+@keyframes cloud-drift {
+  from {
+    transform: translateX(-10px);
+  }
+
+  to {
+    transform: translateX(20px);
+  }
+}
+
+/* ========================================
+   BUILDING SHAPES
+======================================== */
+
+.city-building {
+  position: absolute;
+  left: var(--building-left);
+  bottom: 0;
+
+  width: var(--building-width);
+  height: var(--building-height);
+
+  min-width: 22px;
+}
+
+.city-building--block {
+  clip-path: polygon(
+    0 18%,
+    16% 18%,
+    16% 6%,
+    72% 6%,
+    72% 0,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+.city-building--tower {
+  clip-path: polygon(
+    0 12%,
+    20% 12%,
+    20% 0,
+    80% 0,
+    80% 8%,
+    100% 8%,
+    100% 100%,
+    0 100%
+  );
+}
+
+.city-building--step {
+  clip-path: polygon(
+    0 32%,
+    16% 32%,
+    16% 22%,
+    40% 22%,
+    40% 10%,
+    72% 10%,
+    72% 0,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+.city-building--narrow {
+  clip-path: polygon(
+    0 16%,
+    24% 16%,
+    24% 0,
+    74% 0,
+    74% 10%,
+    100% 10%,
+    100% 100%,
+    0 100%
+  );
+}
+
+.city-building--skyscraper {
+  clip-path: polygon(
+    18% 10%,
+    35% 10%,
+    35% 0,
+    65% 0,
+    65% 10%,
+    82% 10%,
+    82% 100%,
+    18% 100%
+  );
+}
+
+.city-building--antenna {
+  clip-path: polygon(
+    0 14%,
+    18% 14%,
+    18% 4%,
+    82% 4%,
+    82% 14%,
+    100% 14%,
+    100% 100%,
+    0 100%
+  );
+}
+
+/* ========================================
+   DENSE DISTANT CITY
+======================================== */
+
+.distant-city-layer {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 19vh;
+  bottom: 23vh;
+  z-index: 3;
+
+  height: 1000px;
+
+  opacity: 1.00;
+
+  filter: blur(0.50px);
+}
+
+.city-building--distant {
+  background:
+    linear-gradient(
+      to bottom,
+      #2d478a 0%,
+      #182858 100%
+    );
+
+  opacity: 1;
+}
+
+.city-building--distant:nth-child(70n) {
+  opacity: 0.2;
+}
+
+.city-building--distant:nth-child(70n) {
+  opacity: 1.00;
+}
+
+.city-building--distant:nth-child(70n) {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(43, 67, 131, 0.86),
+      rgba(19, 31, 74, 0.96)
+    );
+}
+
+/* ========================================
+   LARGE HALF-VISIBLE MOON
+======================================== */
+
+.pixel-moon {
+  position: absolute;
+  right: 5vw;
+  bottom: calc(23vh - 90px);
+  z-index: 1;
+
+  width: clamp(220px, 22vw, 360px);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  opacity: 0.7;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(196, 216, 234, 0.96) 0,
+      rgba(196, 216, 234, 0.96) 9px,
+      rgba(132, 163, 198, 0.72) 9px,
+      rgba(132, 163, 198, 0.72) 14px
+    );
+
+  box-shadow:
+    0 0 38px rgba(112, 159, 212, 0.116);
+
+  clip-path: inset(0 0 50% 0);
+
+  image-rendering: pixelated;
+}
+
+/* ========================================
+   BACKGROUND RAILWAY
+======================================== */
+
+.railway-background-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 23vh;
   z-index: 4;
+
+  height: 76px;
+
+  opacity: 0.9;
+}
+
+.railway-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9px;
+
+  height: 9px;
+
+  background: #0a1530;
+
+  border-top:
+    1px solid rgba(111, 160, 203, 0.52);
+
+  border-bottom:
+    1px solid rgba(57, 98, 146, 0.48);
+
+  box-shadow:
+    0 3px 0 rgba(3, 8, 18, 0.92),
+    0 5px 0 rgba(52, 88, 130, 0.18);
+}
+
+.railway-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  height: 1px;
+
+  background: rgba(121, 170, 210, 0.34);
+}
+
+.railway-line--top {
+  top: 1px;
+}
+
+.railway-line--bottom {
+  bottom: 1px;
+}
+
+.railway-supports {
+  position: absolute;
+  inset: 0;
+}
+
+.railway-support {
+  position: absolute;
+  left: var(--support-left);
+  top: 18px;
+  bottom: 0;
+
+  width: 3px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(27, 49, 85, 0.96),
+      rgba(8, 18, 37, 1)
+    );
+
+  transform: translateX(-50%);
+}
+
+.railway-support::before {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  top: 0;
+
+  width: 17px;
+  height: 3px;
+
+  background: #152746;
+
+  transform: translateX(-50%);
+}
+
+.railway-support::after {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: 11px;
+  height: 4px;
+
+  background: #0b1830;
+
+  transform: translateX(-50%);
+}
+
+/* ========================================
+   SIMPLE TRAM
+======================================== */
+
+.pixel-tram {
+  position: absolute;
+  left: -150px;
+  top: -1px;
+
+  width: 118px;
+  height: 28px;
+
+  opacity: 0.9;
+
+  animation:
+    tram-move
+    21s
+    linear
+    infinite;
+
+  image-rendering: pixelated;
+}
+
+.tram-body {
+  position: absolute;
+  left: 0;
+  top: 4px;
+
+  width: 116px;
+  height: 17px;
+
+  background: #477a9c;
+
+  border:
+    2px solid rgba(158, 202, 222, 0.66);
+
+  border-radius: 2px;
+}
+
+.tram-body::before {
+  content: "";
+
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 2px;
+
+  height: 3px;
+
+  background: #1d395c;
+}
+
+.tram-windows {
+  position: absolute;
+  left: 8px;
+  top: 3px;
+
+  display: flex;
+  gap: 5px;
+}
+
+.tram-windows span {
+  width: 14px;
+  height: 7px;
+
+  background: #09162b;
+
+  border:
+    1px solid rgba(143, 194, 216, 0.58);
+}
+
+.tram-headlight {
+  position: absolute;
+  right: 3px;
+  top: 5px;
+
+  width: 5px;
+  height: 5px;
+
+  background: #e4eff4;
+
+  box-shadow:
+    0 0 4px rgba(207, 233, 241, 0.7);
+}
+
+.tram-wheel {
+  position: absolute;
+  top: 16px;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #030811;
+
+  border:
+    1px solid #294662;
+}
+
+.tram-wheel--left {
+  left: 19px;
+}
+
+.tram-wheel--right {
+  right: 19px;
+}
+
+@keyframes tram-move {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(100vw + 300px));
+  }
+}
+
+/* ========================================
+   MAIN FOREGROUND CITY
+======================================== */
+
+.main-city-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 23vh;
+  z-index: 5;
+
+  height: 185px;
+}
+
+.city-building--main {
+  overflow: visible;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #101a3b 0%,
+      #081027 100%
+    );
+
+  border-top:
+    1px solid rgba(98, 138, 181, 0.18);
+
+  opacity: 1;
+  isolation: isolate;
+}
+
+.main-city-base {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 23vh;
+  z-index: 5;
+
+  height: 28px;
+
+  background: #081027;
+
+  border-top:
+    1px solid rgba(86, 127, 168, 0.22);
+}
+
+.city-antenna {
+  position: absolute;
+  left: 50%;
+  bottom: 96%;
+
+  width: 2px;
+  height: 24px;
+
+  background: rgba(92, 144, 190, 0.58);
+
+  transform: translateX(-50%);
+}
+
+.city-antenna::after {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  top: -3px;
+
+  width: 3px;
+  height: 3px;
+
+  background: #b9d7ea;
+
+  transform: translateX(-50%);
+
+  animation:
+    antenna-blink
+    2.5s
+    steps(2, end)
+    infinite;
+}
+
+@keyframes antenna-blink {
+  0%,
+  52% {
+    opacity: 0.18;
+  }
+
+  53%,
+  100% {
+    opacity: 0.92;
+  }
+}
+
+/* ========================================
+   WINDOWS
+======================================== */
+
+.city-windows {
+  position: absolute;
+  inset: 16px 8px 9px;
+
+  opacity: 0.72;
+
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent 5px,
+      currentColor 5px,
+      currentColor 10px,
+      transparent 10px,
+      transparent 16px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 7px,
+      rgba(0, 0, 0, 0.7) 7px,
+      rgba(0, 0, 0, 0.7) 11px,
+      transparent 11px,
+      transparent 17px
+    );
+
+  background-blend-mode: screen;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.96),
+      rgba(0, 0, 0, 0.4)
+    );
+
+  animation:
+    window-flicker
+    8s
+    steps(2, end)
+    var(--building-delay)
+    infinite;
+}
+
+.city-building--windows-cyan {
+  color: #76bcd5;
+}
+
+.city-building--windows-blue {
+  color: #4d7ea8;
+}
+
+.city-building--windows-white {
+  color: #d1dce4;
+}
+
+.city-building:nth-child(3n) .city-windows {
+  background-size:
+    18px 18px,
+    18px 18px;
+}
+
+.city-building:nth-child(4n) .city-windows {
+  inset:
+    24px
+    10px
+    10px;
+}
+
+.city-building:nth-child(5n) .city-windows {
+  opacity: 0.45;
+}
+
+@keyframes window-flicker {
+  0%,
+  92%,
+  100% {
+    filter: brightness(1);
+  }
+
+  93% {
+    filter: brightness(0.42);
+  }
+
+  95% {
+    filter: brightness(1.35);
+  }
+}
+
+/* ========================================
+   CITY BASE LINE
+======================================== */
+
+.city-ground-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22.9vh;
+  z-index: 7;
 
   height: 2px;
 
-  background: rgba(172, 132, 255, 0.74);
+  background: rgba(98, 145, 185, 0.68);
 
   box-shadow:
-    0 0 7px rgba(103, 155, 255, 0.62),
-    0 0 18px rgba(182, 97, 255, 0.42),
-    0 0 34px rgba(255, 92, 199, 0.18);
+    0 0 6px rgba(76, 129, 181, 0.42),
+    0 0 16px rgba(61, 105, 170, 0.22);
 }
 
-/* ===========================
-   BLUE-VIOLET PERSPECTIVE GRID
-=========================== */
+/* ========================================
+   PERSPECTIVE GRID
+======================================== */
 
 .home-grid {
   position: absolute;
-  left: -15%;
-  right: -15%;
-  bottom: -14vh;
-  z-index: 3;
+  left: -17%;
+  right: -17%;
+  bottom: -15vh;
+  z-index: 4;
 
-  height: 35vh;
+  height: 39vh;
 
-  opacity: 0.58;
+  opacity: 0.5;
 
   background-image:
     linear-gradient(
       to right,
-      rgba(113, 143, 255, 0.72) 1px,
+      rgba(72, 119, 168, 0.7) 1px,
       transparent 1px
     ),
     linear-gradient(
       to bottom,
-      rgba(143, 100, 255, 0.7) 1px,
+      rgba(72, 104, 163, 0.68) 1px,
       transparent 1px
     );
 
   background-size:
     74px 100%,
-    100% 42px;
+    100% 43px;
 
   transform:
-    perspective(370px)
-    rotateX(64deg);
+    perspective(390px)
+    rotateX(63deg);
 
   transform-origin: top center;
 
   mask-image:
     linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.22),
-      rgba(0, 0, 0, 0.88) 30%,
+      rgba(0, 0, 0, 0.12),
+      rgba(0, 0, 0, 0.9) 32%,
       rgba(0, 0, 0, 1)
     );
 
   filter:
     drop-shadow(
-      0 0 2px rgba(99, 143, 255, 0.25)
+      0 0 2px rgba(70, 125, 185, 0.22)
     );
 }
 
-/* ===========================
-   SOFT SKY GLOW
-=========================== */
-
-.home-background::before {
-  content: "";
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 19vh;
-  z-index: 2;
-
-  height: 31vh;
-
-  background:
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(40, 27, 105, 0.12) 38%,
-      rgba(95, 42, 166, 0.2) 70%,
-      rgba(207, 68, 184, 0.18) 92%,
-      rgba(255, 135, 192, 0.22) 100%
-    );
-}
-
-/* ===========================
+/* ========================================
    FINISHING
-=========================== */
+======================================== */
 
 .home-vignette {
   position: absolute;
   inset: 0;
-  z-index: 6;
+  z-index: 10;
 
   background:
     radial-gradient(
-      circle at 50% 42%,
-      transparent 52%,
-      rgba(0, 0, 0, 0.48) 100%
+      circle at 50% 38%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.4) 100%
     );
 }
 
 .home-scanlines {
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 9;
 
   opacity: 0.012;
 
   background-image:
     repeating-linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.2) 0,
-      rgba(255, 255, 255, 0.2) 1px,
+      rgba(255, 255, 255, 0.22) 0,
+      rgba(255, 255, 255, 0.22) 1px,
       transparent 1px,
       transparent 5px
     );
 }
 
-@keyframes home-star-blink {
-  0%,
-  38% {
-    opacity: 0.14;
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+  .pixel-sky {
+    bottom: 21vh;
   }
 
-  39%,
-  72% {
-    opacity: 0.72;
+  .distant-city-layer,
+  .railway-background-layer,
+  .main-city-layer {
+    bottom: 21vh;
   }
 
-  73%,
-  100% {
-    opacity: 0.26;
-  }
-}
-
-@media (max-width: 700px) {
-  .home-horizon {
-    bottom: 17vh;
+  .distant-city-layer {
+    height: 150px;
   }
 
-  .home-background::before {
-    bottom: 17vh;
-    height: 28vh;
+  .pixel-moon {
+    bottom: calc(21vh + 30px);
+
+    width: clamp(170px, 25vw, 260px);
+  }
+
+  .railway-background-layer {
+    height: 66px;
+  }
+
+  .main-city-layer {
+    height: 155px;
+  }
+
+  .main-city-base {
+    bottom: 21vh;
+  }
+
+  .city-ground-line {
+    bottom: 20.9vh;
   }
 
   .home-grid {
-    bottom: -11vh;
+    height: 35vh;
+    bottom: -13vh;
+
+    background-size:
+      58px 100%,
+      100% 38px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pixel-sky {
+    bottom: 19vh;
+  }
+
+  .distant-city-layer,
+  .railway-background-layer,
+  .main-city-layer {
+    bottom: 19vh;
+  }
+
+  .distant-city-layer {
+    height: 110px;
+  }
+
+  .pixel-moon {
+    right: 2vw;
+    bottom: calc(19vh + 22px);
+
+    width: clamp(135px, 38vw, 190px);
+  }
+
+  .railway-background-layer {
+    height: 56px;
+  }
+
+  .main-city-layer {
+    height: 120px;
+  }
+
+  .main-city-base {
+    bottom: 19vh;
+    height: 22px;
+  }
+
+  .city-building {
+    min-width: 18px;
+  }
+
+  .city-ground-line {
+    bottom: 18.9vh;
+  }
+
+  .home-grid {
+    bottom: -10vh;
     height: 30vh;
 
     background-size:
-      48px 100%,
-      100% 34px;
+      42px 100%,
+      100% 31px;
+  }
+
+  .pixel-tram {
+    animation-duration: 15s;
+
+    transform: scale(0.8);
+    transform-origin: left center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .city-star,
+  .city-cross-star,
+  .pixel-cloud,
+  .city-antenna::after,
+  .city-windows,
+  .pixel-tram {
+    animation: none;
+  }
+
+  .pixel-tram {
+    left: 34vw;
   }
 }
