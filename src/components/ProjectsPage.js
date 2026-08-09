@@ -124,6 +124,7 @@ const projects = [
 ];
 
 
+
 /* ==========================================================
    CREATE PROJECTS PAGE
    ========================================================== */
@@ -144,6 +145,8 @@ export function createProjectsPage() {
           class="project-card"
           data-project-index="${index}"
           aria-hidden="true"
+          role="button"
+          tabindex="-1"
         >
 
           <div
@@ -296,6 +299,7 @@ export function startProjectsPage() {
   }
 
 
+
   let activeIndex = 0;
 
   let isAnimating = false;
@@ -372,6 +376,17 @@ export function startProjectsPage() {
             ? "false"
             : "true"
         );
+
+
+        /*
+          Only active card can be reached
+          with keyboard.
+        */
+
+        card.tabIndex =
+          isActive
+            ? 0
+            : -1;
 
 
         card.style.setProperty(
@@ -452,6 +467,105 @@ export function startProjectsPage() {
 
 
   /* ========================================================
+     OPEN PROJECT
+     ======================================================== */
+
+  function openProject(index) {
+
+    const card =
+      cards[index];
+
+
+    if (!card) {
+      return;
+    }
+
+
+    /*
+      Only the currently selected
+      center card can be opened.
+    */
+
+    if (
+      !card.classList.contains(
+        "project-card--active"
+      )
+    ) {
+      return;
+    }
+
+
+    const project =
+      projects[index];
+
+
+    if (!project) {
+      return;
+    }
+
+
+    /*
+      This event is received by
+      ProjectWindow.js
+    */
+
+    window.dispatchEvent(
+      new CustomEvent(
+        "portfolio:open-project",
+        {
+          detail: project,
+        }
+      )
+    );
+  }
+
+
+
+  /* ========================================================
+     CARD CLICK
+     ======================================================== */
+
+  cards.forEach(
+    (card, index) => {
+
+      card.addEventListener(
+        "click",
+        () => {
+
+          openProject(index);
+
+        }
+      );
+
+
+      /*
+        Keyboard support
+      */
+
+      card.addEventListener(
+        "keydown",
+        (event) => {
+
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+
+            event.preventDefault();
+
+            openProject(index);
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+
+  /* ========================================================
      PREVIOUS
      ======================================================== */
 
@@ -522,7 +636,7 @@ export function startProjectsPage() {
 
 
   /* ========================================================
-     KEYBOARD
+     KEYBOARD CAROUSEL
      ======================================================== */
 
   window.addEventListener(
@@ -535,9 +649,33 @@ export function startProjectsPage() {
         );
 
 
+      /*
+        Do nothing if Projects
+        page is not visible.
+      */
+
       if (
         !projectsPage ||
         projectsPage.hidden
+      ) {
+        return;
+      }
+
+
+      /*
+        Do not move carousel while
+        project window is open.
+      */
+
+      const projectWindow =
+        document.querySelector(
+          "#project-window-overlay"
+        );
+
+
+      if (
+        projectWindow &&
+        !projectWindow.hidden
       ) {
         return;
       }
@@ -570,5 +708,11 @@ export function startProjectsPage() {
   );
 
 
+
+  /* ========================================================
+     INITIAL STATE
+     ======================================================== */
+
   updateCards();
+
 }

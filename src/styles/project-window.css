@@ -1,0 +1,1078 @@
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400&family=Share+Tech+Mono&display=swap");
+
+
+/* ==========================================================
+   PROJECT WINDOW OVERLAY
+   ========================================================== */
+
+.project-window-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 5000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    5vh
+    5vw;
+
+  box-sizing: border-box;
+
+  background:
+    rgba(
+      0,
+      3,
+      7,
+      0.74
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 220ms ease,
+    padding 260ms ease;
+
+  pointer-events: auto;
+}
+
+
+.project-window-overlay[hidden] {
+  display: none;
+}
+
+
+.project-window-overlay--visible {
+  opacity: 1;
+}
+
+
+
+/* ==========================================================
+   MAIN PROJECT WINDOW
+   ========================================================== */
+
+.project-window {
+  position: relative;
+
+  width:
+    min(
+      1450px,
+      88vw
+    );
+
+  height:
+    86vh;
+
+  display: grid;
+
+  grid-template-rows:
+    36px
+    1fr
+    28px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  background:
+    #05090d;
+
+  border:
+    1px solid
+    rgba(
+      88,
+      230,
+      255,
+      0.58
+    );
+
+  border-radius:
+    1px;
+
+  box-shadow:
+    0 0 8px
+    rgba(
+      88,
+      230,
+      255,
+      0.10
+    ),
+
+    0 18px 60px
+    rgba(
+      0,
+      0,
+      0,
+      0.72
+    );
+
+  opacity: 0;
+
+  transform:
+    scale(0.975)
+    translateY(8px);
+
+  transform-origin:
+    center;
+
+  transition:
+    width 260ms ease,
+    height 260ms ease,
+    opacity 220ms ease,
+    transform 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease;
+}
+
+
+.project-window--visible {
+  opacity: 1;
+
+  transform:
+    scale(1)
+    translateY(0);
+}
+
+
+
+/* ==========================================================
+   MAXIMIZED WINDOW
+   ========================================================== */
+
+.project-window-overlay--maximized {
+  padding: 0;
+}
+
+
+.project-window.project-window--maximized {
+  width: 100vw;
+  height: 100vh;
+
+  max-width: none;
+  max-height: none;
+
+  border: 0;
+
+  border-radius: 0;
+
+  box-shadow: none;
+
+  transform:
+    scale(1)
+    translateY(0);
+}
+
+
+
+/* ==========================================================
+   TITLE BAR
+   ========================================================== */
+
+.project-window-header {
+  position: relative;
+
+  z-index: 20;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  height: 36px;
+
+  padding:
+    0
+    8px
+    0
+    14px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      180deg,
+      #08131c,
+      #061018
+    );
+
+  border-bottom:
+    1px solid
+    rgba(
+      88,
+      230,
+      255,
+      0.24
+    );
+
+  user-select: none;
+}
+
+
+
+/* ==========================================================
+   WINDOW TITLE
+   ========================================================== */
+
+.project-window-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  min-width: 0;
+
+  font-family:
+    "Pixelify Sans",
+    monospace;
+
+  font-size:
+    10px;
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  letter-spacing:
+    0.12em;
+
+  text-transform:
+    uppercase;
+
+  color:
+    rgba(
+      216,
+      247,
+      255,
+      0.82
+    );
+
+  text-shadow:
+    0 0 4px
+    rgba(
+      88,
+      230,
+      255,
+      0.12
+    );
+}
+
+
+
+/* ==========================================================
+   SMALL CYAN STATUS PIXEL
+   ========================================================== */
+
+.project-window-title-dot {
+  flex: 0 0 auto;
+
+  width: 4px;
+  height: 4px;
+
+  background:
+    #58e6ff;
+
+  box-shadow:
+    0 0 5px
+    rgba(
+      88,
+      230,
+      255,
+      0.65
+    );
+}
+
+
+
+/* ==========================================================
+   WINDOW ACTIONS
+   ========================================================== */
+
+.project-window-actions {
+  height: 100%;
+
+  display: flex;
+
+  align-items: stretch;
+
+  margin-left: auto;
+}
+
+
+
+/* ==========================================================
+   MAXIMIZE / CLOSE BUTTONS
+   ========================================================== */
+
+.project-window-action {
+  position: relative;
+
+  width: 36px;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+
+  background:
+    transparent;
+
+  color:
+    rgba(
+      150,
+      195,
+      215,
+      0.58
+    );
+
+  font-family:
+    "Pixelify Sans",
+    monospace;
+
+  font-size:
+    14px;
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  transition:
+    color 150ms ease,
+    background 150ms ease,
+    text-shadow 150ms ease,
+    filter 150ms ease;
+}
+
+
+.project-window-action:hover {
+  color:
+    #eafaff;
+
+  background:
+    rgba(
+      88,
+      230,
+      255,
+      0.07
+    );
+
+  filter:
+    brightness(1.2);
+
+  text-shadow:
+    0 0 4px
+    rgba(
+      216,
+      247,
+      255,
+      0.72
+    ),
+
+    0 0 8px
+    rgba(
+      88,
+      230,
+      255,
+      0.45
+    );
+}
+
+
+.project-window-action:active {
+  background:
+    rgba(
+      88,
+      230,
+      255,
+      0.12
+    );
+
+  transform:
+    scale(0.92);
+}
+
+
+
+/* ==========================================================
+   CLOSE BUTTON
+   ========================================================== */
+
+.project-window-close:hover {
+  color:
+    #ffffff;
+
+  background:
+    rgba(
+      88,
+      230,
+      255,
+      0.10
+    );
+
+  text-shadow:
+    0 0 5px
+    rgba(
+      216,
+      247,
+      255,
+      0.85
+    ),
+
+    0 0 10px
+    rgba(
+      88,
+      230,
+      255,
+      0.55
+    );
+}
+
+
+
+/* ==========================================================
+   SCROLLABLE PROJECT AREA
+   ========================================================== */
+
+.project-window-content {
+  position: relative;
+
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  overscroll-behavior:
+    contain;
+
+  background:
+    #090d11;
+
+  scrollbar-width:
+    thin;
+
+  scrollbar-color:
+    rgba(
+      88,
+      230,
+      255,
+      0.34
+    )
+    #04080b;
+}
+
+
+
+/* ==========================================================
+   CHROME / EDGE SCROLLBAR
+   ========================================================== */
+
+.project-window-content::-webkit-scrollbar {
+  width: 7px;
+}
+
+
+.project-window-content::-webkit-scrollbar-track {
+  background:
+    #04080b;
+}
+
+
+.project-window-content::-webkit-scrollbar-thumb {
+  background:
+    rgba(
+      88,
+      230,
+      255,
+      0.28
+    );
+
+  border:
+    2px solid
+    #04080b;
+}
+
+
+.project-window-content::-webkit-scrollbar-thumb:hover {
+  background:
+    rgba(
+      88,
+      230,
+      255,
+      0.55
+    );
+}
+
+
+
+/* ==========================================================
+   VERY SUBTLE BACKGROUND TEXTURE
+   ========================================================== */
+
+.project-window-content::before {
+  content: "";
+
+  position: fixed;
+
+  pointer-events: none;
+
+  opacity: 0.025;
+
+  background:
+    repeating-linear-gradient(
+      180deg,
+
+      transparent 0,
+      transparent 3px,
+
+      rgba(
+        88,
+        230,
+        255,
+        0.25
+      ) 4px
+    );
+}
+
+
+
+/* ==========================================================
+   PROJECT DOCUMENT
+   ========================================================== */
+
+.project-document {
+  position: relative;
+
+  width: 100%;
+
+  padding:
+    55px
+    0
+    70px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 45px;
+}
+
+
+
+/* ==========================================================
+   INDIVIDUAL PORTFOLIO PAGE
+   ========================================================== */
+
+.project-document-page {
+  position: relative;
+
+  width:
+    min(
+      1180px,
+      84%
+    );
+
+  aspect-ratio:
+    1.414 / 1;
+
+  flex: none;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background:
+    #f4f4f2;
+
+  color:
+    #222222;
+
+  box-shadow:
+    0 8px 30px
+    rgba(
+      0,
+      0,
+      0,
+      0.42
+    );
+}
+
+
+
+/* ==========================================================
+   PAGE HOVER
+
+   Very subtle lift only
+   ========================================================== */
+
+.project-document-page {
+  transition:
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+
+.project-document-page:hover {
+  box-shadow:
+    0 10px 38px
+    rgba(
+      0,
+      0,
+      0,
+      0.52
+    );
+}
+
+
+
+/* ==========================================================
+   TEMPORARY FIRST PAGE CONTENT
+
+   This will later be replaced by your real portfolio pages.
+   ========================================================== */
+
+.project-demo-content {
+  width: 100%;
+  height: 100%;
+
+  padding:
+    7%;
+
+  box-sizing: border-box;
+
+  display: grid;
+
+  grid-template-columns:
+    0.9fr
+    1.3fr;
+
+  gap:
+    8%;
+
+  align-items: center;
+}
+
+
+
+/* ==========================================================
+   TEMP PROJECT TITLE
+   ========================================================== */
+
+.project-demo-content h1 {
+  margin:
+    0
+    0
+    12px;
+
+  font-family:
+    "Share Tech Mono",
+    monospace;
+
+  font-size:
+    clamp(
+      24px,
+      2vw,
+      40px
+    );
+
+  font-weight: 400;
+
+  line-height: 1.1;
+
+  color:
+    #303030;
+}
+
+
+
+/* ==========================================================
+   TEMP PROJECT SUBTITLE
+   ========================================================== */
+
+.project-demo-content p {
+  max-width:
+    380px;
+
+  margin: 0;
+
+  font-family:
+    "Share Tech Mono",
+    monospace;
+
+  font-size:
+    clamp(
+      12px,
+      1vw,
+      17px
+    );
+
+  line-height:
+    1.4;
+
+  color:
+    #676767;
+}
+
+
+
+/* ==========================================================
+   TEMP PROJECT IMAGE PLACEHOLDER
+   ========================================================== */
+
+.project-demo-image {
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    #d6d8d8;
+
+  font-family:
+    "Share Tech Mono",
+    monospace;
+
+  font-size:
+    12px;
+
+  letter-spacing:
+    0.08em;
+
+  color:
+    #666666;
+}
+
+
+
+/* ==========================================================
+   TEMP OTHER PAGE PLACEHOLDERS
+   ========================================================== */
+
+.project-document-page > span {
+  font-family:
+    "Share Tech Mono",
+    monospace;
+
+  font-size:
+    12px;
+
+  letter-spacing:
+    0.12em;
+
+  color:
+    rgba(
+      0,
+      0,
+      0,
+      0.25
+    );
+}
+
+
+
+/* ==========================================================
+   WINDOW FOOTER
+   ========================================================== */
+
+.project-window-footer {
+  position: relative;
+
+  z-index: 20;
+
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding:
+    0
+    14px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      180deg,
+      #050b10,
+      #03070a
+    );
+
+  border-top:
+    1px solid
+    rgba(
+      88,
+      230,
+      255,
+      0.16
+    );
+
+  font-family:
+    "Share Tech Mono",
+    monospace;
+
+  font-size:
+    8px;
+
+  line-height: 1;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+
+  color:
+    rgba(
+      130,
+      183,
+      204,
+      0.50
+    );
+
+  user-select: none;
+}
+
+
+
+/* ==========================================================
+   MAXIMIZED MODE CONTENT
+
+   Give the portfolio slightly more room.
+   ========================================================== */
+
+.project-window--maximized
+.project-document {
+  padding-top:
+    50px;
+
+  padding-bottom:
+    70px;
+}
+
+
+.project-window--maximized
+.project-document-page {
+  width:
+    min(
+      1380px,
+      88%
+    );
+}
+
+
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (max-width: 900px) {
+
+  .project-window-overlay {
+    padding:
+      4vh
+      4vw;
+  }
+
+
+  .project-window {
+    width:
+      92vw;
+
+    height:
+      88vh;
+  }
+
+
+  .project-window-overlay--maximized {
+    padding: 0;
+  }
+
+
+  .project-window.project-window--maximized {
+    width:
+      100vw;
+
+    height:
+      100vh;
+  }
+
+
+  .project-document {
+    padding:
+      40px
+      0
+      55px;
+
+    gap:
+      34px;
+  }
+
+
+  .project-document-page {
+    width:
+      88%;
+  }
+
+}
+
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+  .project-window-overlay {
+    padding:
+      3vh
+      3vw;
+  }
+
+
+  .project-window {
+    width:
+      94vw;
+
+    height:
+      90vh;
+
+    grid-template-rows:
+      34px
+      1fr
+      26px;
+  }
+
+
+  .project-window-overlay--maximized {
+    padding: 0;
+  }
+
+
+  .project-window.project-window--maximized {
+    width:
+      100vw;
+
+    height:
+      100vh;
+  }
+
+
+  .project-window-header {
+    height:
+      34px;
+
+    padding-left:
+      10px;
+  }
+
+
+  .project-window-title {
+    gap:
+      7px;
+
+    font-size:
+      9px;
+  }
+
+
+  .project-window-action {
+    width:
+      33px;
+
+    font-size:
+      13px;
+  }
+
+
+  .project-document {
+    padding:
+      28px
+      0
+      42px;
+
+    gap:
+      26px;
+  }
+
+
+  .project-document-page {
+    width:
+      92%;
+  }
+
+
+  .project-window--maximized
+  .project-document-page {
+    width:
+      94%;
+  }
+
+
+  .project-demo-content {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      24px;
+  }
+
+
+  .project-demo-image {
+    min-height:
+      180px;
+  }
+
+
+  .project-window-footer {
+    height:
+      26px;
+
+    padding:
+      0
+      10px;
+
+    font-size:
+      7px;
+  }
+
+}
+
+
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .project-window-overlay,
+  .project-window,
+  .project-window-action,
+  .project-document-page {
+    transition: none;
+  }
+
+}

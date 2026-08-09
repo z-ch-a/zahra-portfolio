@@ -30,6 +30,12 @@ import {
 
 
 import {
+  createProjectWindow,
+  startProjectWindow,
+} from "./components/ProjectWindow";
+
+
+import {
   startHomeCursor,
 } from "./components/HomeCursor";
 
@@ -46,24 +52,47 @@ import {
 
 
 /* ==========================================================
+   GET APP
+   ========================================================== */
+
+const app =
+  document.querySelector("#app");
+
+
+if (!app) {
+  throw new Error(
+    'Could not find element with id="app".'
+  );
+}
+
+
+
+/* ==========================================================
    BUILD WEBSITE
    ========================================================== */
 
-const app = document.querySelector("#app");
-
-
 app.innerHTML = `
+
   ${createIntroScreen()}
 
+
   ${createProjectsPage()}
+
+
+  ${createProjectWindow()}
+
 
   <main
     class="homepage"
     id="homepage"
   >
+
     ${createHero()}
+
     ${createMainMenu()}
+
   </main>
+
 `;
 
 
@@ -75,29 +104,70 @@ app.innerHTML = `
 const homepage =
   document.querySelector("#homepage");
 
-const background =
-  createBackground();
 
-homepage.prepend(background);
+if (homepage) {
+
+  const background =
+    createBackground();
+
+
+  /*
+    Background is inserted BEFORE
+    Hero + Main Menu.
+  */
+
+  homepage.prepend(
+    background
+  );
+
+}
 
 
 
 /* ==========================================================
-   INITIALIZE
+   START WEBSITE
    ========================================================== */
 
 /*
-  IMPORTANT:
-  Keep the original intro initialization first.
+  Intro must stay independent.
 */
 
 startIntroScreen();
 
+
+/*
+  Projects carousel.
+*/
+
 startProjectsPage();
+
+
+/*
+  Floating project detail window.
+*/
+
+startProjectWindow();
+
+
+/*
+  Homepage navigation.
+*/
 
 startMainMenu();
 
+
+/*
+  Shared custom cursor:
+  intro + homepage + transition +
+  projects + project window.
+*/
+
 startHomeCursor();
+
+
+/*
+  Homepage atmospheric effects.
+*/
 
 startBlinkingStars();
 

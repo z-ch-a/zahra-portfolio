@@ -10,9 +10,11 @@ export function startHomeCursor() {
   const existingCursor =
     document.querySelector("#home-cursor");
 
+
   if (existingCursor) {
     return;
   }
+
 
 
   /* ========================================================
@@ -22,8 +24,10 @@ export function startHomeCursor() {
   const cursor =
     document.createElement("div");
 
+
   cursor.className =
     "home-cursor";
+
 
   cursor.id =
     "home-cursor";
@@ -34,30 +38,52 @@ export function startHomeCursor() {
   `;
 
 
-  document.body.appendChild(cursor);
+  document.body.appendChild(
+    cursor
+  );
 
 
 
   /* ========================================================
-     CHECK WHERE CUSTOM CURSOR IS ALLOWED
+     CHECK WHETHER CUSTOM CURSOR SHOULD BE ACTIVE
      ======================================================== */
 
   function isInsideCustomCursorArea(target) {
 
     const introScreen =
-      document.querySelector("#intro-screen");
+      document.querySelector(
+        "#intro-screen"
+      );
+
 
     const homepage =
-      document.querySelector("#homepage");
+      document.querySelector(
+        "#homepage"
+      );
+
 
     const projectsPage =
-      document.querySelector("#projects-page");
+      document.querySelector(
+        "#projects-page"
+      );
+
 
     const pageTransition =
-      document.querySelector(".page-transition");
+      document.querySelector(
+        ".page-transition"
+      );
 
 
-    /* INTRO SCREEN */
+    const projectWindowOverlay =
+      document.querySelector(
+        "#project-window-overlay"
+      );
+
+
+
+    /* ------------------------------------------------------
+       INTRO
+       ------------------------------------------------------ */
 
     const introIsActive =
       introScreen &&
@@ -71,7 +97,10 @@ export function startHomeCursor() {
       introScreen.contains(target);
 
 
-    /* HOMEPAGE */
+
+    /* ------------------------------------------------------
+       HOMEPAGE
+       ------------------------------------------------------ */
 
     const homepageIsActive =
       homepage &&
@@ -83,7 +112,10 @@ export function startHomeCursor() {
       homepage.contains(target);
 
 
-    /* PROJECTS PAGE */
+
+    /* ------------------------------------------------------
+       PROJECTS PAGE
+       ------------------------------------------------------ */
 
     const projectsIsActive =
       projectsPage &&
@@ -95,19 +127,77 @@ export function startHomeCursor() {
       projectsPage.contains(target);
 
 
-    /* TRANSITION PAGE */
+
+    /* ------------------------------------------------------
+       PAGE TRANSITION
+       ------------------------------------------------------ */
 
     const insideTransition =
       pageTransition &&
       pageTransition.contains(target);
 
 
+
+    /* ------------------------------------------------------
+       PROJECT WINDOW
+       ------------------------------------------------------ */
+
+    const projectWindowIsActive =
+      projectWindowOverlay &&
+      !projectWindowOverlay.hidden;
+
+
+    const insideProjectWindow =
+      projectWindowIsActive &&
+      projectWindowOverlay.contains(
+        target
+      );
+
+
+
     return (
       insideIntro ||
       insideHomepage ||
       insideProjects ||
-      insideTransition
+      insideTransition ||
+      insideProjectWindow
     );
+  }
+
+
+
+  /* ========================================================
+     FIND CLICKABLE ELEMENT
+     ======================================================== */
+
+  function isClickable(target) {
+
+    if (
+      !target ||
+      typeof target.closest !== "function"
+    ) {
+      return false;
+    }
+
+
+    const clickable =
+      target.closest(`
+        button,
+        a,
+        [role="button"],
+        [data-page],
+        [data-project-index],
+        .clickable,
+        .project-card,
+        .main-menu-item,
+        .project-arrow,
+        .projects-back-button,
+        .project-window-action,
+        .project-window-close
+      `);
+
+
+    return Boolean(clickable);
   }
 
 
@@ -118,66 +208,71 @@ export function startHomeCursor() {
 
   function updateCursor(event) {
 
-    if (
-      !isInsideCustomCursorArea(
+    const insideArea =
+      isInsideCustomCursorArea(
         event.target
-      )
-    ) {
+      );
+
+
+    if (!insideArea) {
 
       cursor.classList.remove(
         "is-visible"
       );
 
+
       cursor.classList.remove(
         "is-hovering"
       );
+
+
+      cursor.classList.remove(
+        "is-clicking"
+      );
+
 
       return;
     }
 
 
-    /* SHOW */
+
+    /* ------------------------------------------------------
+       POSITION
+       ------------------------------------------------------ */
+
+    cursor.style.left =
+      `${event.clientX}px`;
+
+
+    cursor.style.top =
+      `${event.clientY}px`;
+
+
+
+    /* ------------------------------------------------------
+       SHOW
+       ------------------------------------------------------ */
 
     cursor.classList.add(
       "is-visible"
     );
 
 
-    /* POSITION */
 
-    cursor.style.left =
-      `${event.clientX}px`;
-
-    cursor.style.top =
-      `${event.clientY}px`;
-
-
-    /* ======================================================
-       CLICKABLE ELEMENT DETECTION
-       ====================================================== */
-
-    const clickable =
-      event.target.closest(`
-        button,
-        a,
-        [role="button"],
-        .clickable,
-        .project-card,
-        [data-project-index],
-        [data-page]
-      `);
-
+    /* ------------------------------------------------------
+       HOVER STATE
+       ------------------------------------------------------ */
 
     cursor.classList.toggle(
       "is-hovering",
-      Boolean(clickable)
+      isClickable(event.target)
     );
   }
 
 
 
   /* ========================================================
-     MOUSE MOVEMENT
+     MOUSE MOVE
      ======================================================== */
 
   window.addEventListener(
@@ -188,12 +283,21 @@ export function startHomeCursor() {
 
 
   /* ========================================================
-     CLICK
+     MOUSE DOWN
      ======================================================== */
 
   window.addEventListener(
     "mousedown",
-    () => {
+    (event) => {
+
+      if (
+        !isInsideCustomCursorArea(
+          event.target
+        )
+      ) {
+        return;
+      }
+
 
       cursor.classList.add(
         "is-clicking"
@@ -202,6 +306,11 @@ export function startHomeCursor() {
     }
   );
 
+
+
+  /* ========================================================
+     MOUSE UP
+     ======================================================== */
 
   window.addEventListener(
     "mouseup",
@@ -217,7 +326,7 @@ export function startHomeCursor() {
 
 
   /* ========================================================
-     LEAVE BROWSER WINDOW
+     MOUSE LEAVES DOCUMENT
      ======================================================== */
 
   document.addEventListener(
@@ -228,8 +337,14 @@ export function startHomeCursor() {
         "is-visible"
       );
 
+
       cursor.classList.remove(
         "is-hovering"
+      );
+
+
+      cursor.classList.remove(
+        "is-clicking"
       );
 
     }
@@ -238,7 +353,7 @@ export function startHomeCursor() {
 
 
   /* ========================================================
-     BROWSER LOSES FOCUS
+     WINDOW LOSES FOCUS
      ======================================================== */
 
   window.addEventListener(
@@ -249,10 +364,17 @@ export function startHomeCursor() {
         "is-visible"
       );
 
+
+      cursor.classList.remove(
+        "is-hovering"
+      );
+
+
       cursor.classList.remove(
         "is-clicking"
       );
 
     }
   );
+
 }
