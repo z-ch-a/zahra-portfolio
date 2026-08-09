@@ -1,13 +1,17 @@
+import "../styles/hero.css";
+
 export function createHero() {
   return `
-    <header class="home-hero">
-      <h1 class="home-title">
+    <header class="hero" id="hero">
+
+      <h1 class="hero-title">
         ZAHRA CHERAGH NIA
       </h1>
 
-      <p class="home-subtitle">
+      <p class="hero-subtitle">
         ARCHITECT & COMPUTATIONAL DESIGNER
       </p>
+
     </header>
   `;
 }

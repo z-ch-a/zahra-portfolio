@@ -1,0 +1,311 @@
+/* ==========================================================
+   HOMEPAGE TRAM
+   ========================================================== */
+
+.home-tram-layer {
+  --tram-height: 45%;
+  --tram-duration: 12s;
+  --tram-width: 150px;
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 2;
+
+  overflow: hidden;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* ==========================================================
+   TRAM LINE
+   ========================================================== */
+
+.home-tram-track {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: var(--tram-height);
+
+  height: 14px;
+
+  opacity: 0.42;
+}
+
+
+/* subtle vertical supports */
+
+.home-tram-track::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  top: 7px;
+
+  height: 18px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 74px,
+      rgba(70, 126, 160, 0.22) 74px,
+      rgba(70, 126, 160, 0.22) 75px
+    );
+}
+
+
+/* ==========================================================
+   RAILS
+   ========================================================== */
+
+.home-tram-rail {
+  position: absolute;
+
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background: rgba(92, 151, 186, 0.34);
+
+  box-shadow:
+    0 0 3px rgba(70, 155, 210, 0.08);
+}
+
+
+.home-tram-rail--top {
+  top: 2px;
+}
+
+
+.home-tram-rail--bottom {
+  top: 7px;
+
+  opacity: 0.55;
+}
+
+
+/* ==========================================================
+   TRAM
+   ========================================================== */
+
+.home-tram {
+  position: absolute;
+
+  left: 0;
+
+  bottom: calc(var(--tram-height) + 7px);
+
+  width: var(--tram-width);
+  height: 18px;
+
+  transform: translateX(-150px);
+
+  animation:
+    tramPass
+    var(--tram-duration)
+    linear
+    infinite;
+}
+
+
+/* ==========================================================
+   TRAM BODY
+   ========================================================== */
+
+.home-tram-body {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  background: #091626;
+
+  border:
+    1px solid
+    rgba(92, 165, 205, 0.55);
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 0 5px rgba(65, 160, 215, 0.10);
+
+  overflow: hidden;
+}
+
+
+/* subtle lower body */
+
+.home-tram-body::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 7px;
+
+  background: #07111d;
+
+  border-top:
+    1px solid
+    rgba(83, 143, 177, 0.25);
+}
+
+
+/* ==========================================================
+   WINDOWS
+   ========================================================== */
+
+.home-tram-windows {
+  position: absolute;
+
+  left: 13px;
+  right: 13px;
+  top: 6px;
+
+  height: 11px;
+
+  display: flex;
+
+  gap: 4px;
+}
+
+
+.home-tram-windows span {
+  flex: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(162, 220, 239, 0.76),
+      rgba(69, 137, 174, 0.48)
+    );
+
+  border:
+    1px solid
+    rgba(148, 211, 238, 0.25);
+
+  box-shadow:
+    inset 0 0 3px rgba(185, 236, 255, 0.12);
+}
+
+
+/* slightly irregular lighting */
+
+.home-tram-windows span:nth-child(2) {
+  opacity: 0.62;
+}
+
+.home-tram-windows span:nth-child(4) {
+  opacity: 0.78;
+}
+
+
+/* ==========================================================
+   FRONT
+   ========================================================== */
+
+.home-tram-front {
+  position: absolute;
+
+  right: 0;
+  top: 0;
+
+  width: 10px;
+  height: 100%;
+
+  background: #0d2034;
+
+  border-left:
+    1px solid
+    rgba(111, 180, 215, 0.28);
+}
+
+
+/* tiny headlight */
+
+.home-tram-light {
+  position: absolute;
+
+  right: 2px;
+  bottom: 8px;
+
+  width: 2px;
+  height: 2px;
+
+  background: #d8f6ff;
+
+  box-shadow:
+    0 0 4px rgba(160, 230, 255, 0.72);
+}
+
+
+/* ==========================================================
+   BACK
+   ========================================================== */
+
+.home-tram-back {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 7px;
+  height: 100%;
+
+  background: #07121f;
+
+  border-right:
+    1px solid
+    rgba(100, 165, 200, 0.20);
+}
+
+
+/* ==========================================================
+   MOVEMENT
+   Tram crosses, then stays away for a while
+   ========================================================== */
+
+@keyframes tramPass {
+
+  0% {
+    transform: translateX(-150px);
+  }
+
+  98% {
+    transform:
+      translateX(calc(100vw + 150px));
+  }
+
+  100% {
+    transform:
+      translateX(calc(100vw + 150px));
+  }
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .home-tram {
+    display: none;
+  }
+}

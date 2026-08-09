@@ -1,0 +1,195 @@
+/* ==========================================================
+   CUSTOM CURSOR AREAS
+
+   Intro
+   Homepage
+   Page transition
+   Projects
+   ========================================================== */
+
+#intro-screen,
+#intro-screen *,
+#homepage,
+#homepage *,
+#projects-page,
+#projects-page *,
+.page-transition,
+.page-transition * {
+  cursor: none !important;
+}
+
+
+/* ==========================================================
+   CURSOR
+   ========================================================== */
+
+.home-cursor {
+  position: fixed;
+
+  left: 0;
+  top: 0;
+
+  width: 12px;
+  height: 12px;
+
+  /*
+    Highest interface layer.
+  */
+  z-index: 400000;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid
+    rgba(126, 213, 255, 0.72);
+
+  background:
+    rgba(3, 16, 25, 0.15);
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  visibility: visible;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1);
+
+  transform-origin: center;
+
+  box-shadow:
+    0 0 4px
+      rgba(80, 185, 255, 0.16);
+
+  transition:
+    width 140ms ease,
+    height 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease,
+    box-shadow 140ms ease,
+    opacity 90ms ease,
+    transform 90ms ease;
+
+  will-change:
+    left,
+    top,
+    transform;
+}
+
+
+/* ==========================================================
+   CENTER PIXEL
+   ========================================================== */
+
+.home-cursor-dot {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 2px;
+  height: 2px;
+
+  background:
+    rgba(188, 237, 255, 0.94);
+
+  transform:
+    translate(-50%, -50%);
+
+  box-shadow:
+    0 0 4px
+      rgba(120, 220, 255, 0.48);
+
+  transition:
+    background 140ms ease,
+    box-shadow 140ms ease,
+    transform 140ms ease;
+}
+
+
+/* ==========================================================
+   VISIBLE
+   ========================================================== */
+
+.home-cursor.is-visible {
+  opacity: 1;
+}
+
+
+/* ==========================================================
+   HOVER OVER CLICKABLE ELEMENT
+   ========================================================== */
+
+.home-cursor.is-hovering {
+  width: 17px;
+  height: 17px;
+
+  border-color:
+    rgba(210, 246, 255, 0.98);
+
+  background:
+    rgba(20, 80, 110, 0.08);
+
+  box-shadow:
+    0 0 5px
+      rgba(160, 230, 255, 0.50),
+
+    0 0 12px
+      rgba(70, 180, 255, 0.22);
+}
+
+
+.home-cursor.is-hovering
+.home-cursor-dot {
+  background:
+    #f0fbff;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1.15);
+
+  box-shadow:
+    0 0 5px
+      rgba(180, 240, 255, 0.88),
+
+    0 0 9px
+      rgba(90, 200, 255, 0.26);
+}
+
+
+/* ==========================================================
+   CLICK
+   ========================================================== */
+
+.home-cursor.is-clicking {
+  transform:
+    translate(-50%, -50%)
+    scale(0.72);
+}
+
+
+/* ==========================================================
+   TOUCH DEVICES
+
+   Do not remove the normal touch behavior.
+   ========================================================== */
+
+@media (pointer: coarse) {
+
+  #intro-screen,
+  #intro-screen *,
+  #homepage,
+  #homepage *,
+  #projects-page,
+  #projects-page *,
+  .page-transition,
+  .page-transition * {
+    cursor: auto !important;
+  }
+
+
+  .home-cursor {
+    display: none !important;
+  }
+}

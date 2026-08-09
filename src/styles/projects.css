@@ -1,33 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400&family=Share+Tech+Mono&display=swap");
+
+
+/* ==========================================================
+   PROJECTS PAGE
+   ========================================================== */
+
 .projects-page {
   position: fixed;
+
   inset: 0;
+
   z-index: 100;
 
   overflow: hidden;
 
-  background: #000000;
-  color: #ffffff;
+  background:
+    #000000;
+
+  color:
+    #d8f7ff;
 }
+
 
 .projects-page[hidden] {
   display: none;
 }
 
-/* Subtle blinking stars */
+
+/* ==========================================================
+   SUBTLE CYAN STAR FIELD
+   ========================================================== */
 
 .projects-stars {
   position: absolute;
+
   inset: 0;
+
   z-index: 0;
 
   pointer-events: none;
 
-  opacity: 0.28;
+  opacity: 0.20;
 
   background-image:
-    radial-gradient(circle, #58e6ff 0 1px, transparent 2px),
-    radial-gradient(circle, #58e6ff 0 1px, transparent 2px),
-    radial-gradient(circle, #ffffff 0 1px, transparent 2px);
+    radial-gradient(
+      circle,
+      rgba(88, 230, 255, 0.8) 0 1px,
+      transparent 2px
+    ),
+
+    radial-gradient(
+      circle,
+      rgba(88, 230, 255, 0.65) 0 1px,
+      transparent 2px
+    ),
+
+    radial-gradient(
+      circle,
+      rgba(216, 247, 255, 0.6) 0 1px,
+      transparent 2px
+    );
 
   background-size:
     190px 170px,
@@ -39,98 +71,227 @@
     120px 90px,
     70px 160px;
 
-  animation: projects-stars-blink 3.5s steps(2, end) infinite;
+  animation:
+    projects-stars-blink
+    4.2s
+    steps(2, end)
+    infinite;
 }
+
+
+
+/* ==========================================================
+   BACK BUTTON
+   ========================================================== */
 
 .projects-back-button {
   position: absolute;
+
   top: 26px;
-  left: 30px;
+  left: 28px;
+
   z-index: 20;
 
-  min-width: 52px;
-  height: 34px;
-  padding: 0 10px;
+  display: inline-flex;
 
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 2px;
+  align-items: center;
+
+  gap: 8px;
+
+  min-width: 0;
+
+  height: auto;
+
+  margin: 0;
+
+  padding:
+    5px 2px;
+
+  border: 0;
 
   background:
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.05),
-      rgba(255, 255, 255, 0.015)
-    ),
-    #080808;
+    transparent;
 
-  color: rgba(255, 255, 255, 0.62);
+  font-family:
+    "Pixelify Sans",
+    monospace;
 
-  font-family: "Press Start 2P", monospace;
-  font-size: 11px;
+  font-size:
+    10px;
+
+  font-weight: 400;
+
   line-height: 1;
-  letter-spacing: 2px;
 
-  box-shadow:
-    inset 0 0 0 1px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(255, 255, 255, 0.03);
+  letter-spacing:
+    0.12em;
+
+  color:
+    rgba(
+      152,
+      196,
+      215,
+      0.64
+    );
+
+  text-transform:
+    uppercase;
 
   transition:
-    color 0.15s steps(2, end),
-    border-color 0.15s steps(2, end),
-    background 0.15s steps(2, end),
-    transform 0.15s steps(2, end);
+    color 170ms ease,
+    text-shadow 170ms ease,
+    transform 170ms ease,
+    filter 170ms ease;
 }
 
-.projects-back-button:hover {
-  color: #ffffff;
 
-  border-color: rgba(255, 255, 255, 0.55);
+/* small cyan indicator */
+
+.projects-back-button::after {
+  content: "";
+
+  position: absolute;
+
+  left: 1px;
+
+  bottom: -5px;
+
+  width: 0;
+
+  height: 1px;
 
   background:
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.025)
-    ),
-    #0b0b0b;
+    #58e6ff;
 
-  transform: translateX(-3px);
+  box-shadow:
+    0 0 5px
+      rgba(
+        88,
+        230,
+        255,
+        0.6
+      );
+
+  transition:
+    width 180ms ease;
 }
+
+
+.projects-back-button:hover {
+  color:
+    #f0fbff;
+
+  transform:
+    translateX(-2px);
+
+  filter:
+    brightness(1.25);
+
+  text-shadow:
+    0 0 4px
+      rgba(
+        216,
+        247,
+        255,
+        0.75
+      ),
+
+    0 0 9px
+      rgba(
+        88,
+        230,
+        255,
+        0.35
+      );
+}
+
+
+.projects-back-button:hover::after {
+  width:
+    calc(100% - 2px);
+}
+
 
 .projects-back-button:active {
-  transform: translateX(-1px) scale(0.96);
+  transform:
+    translateX(-1px)
+    scale(0.96);
 }
 
-/* Slider area */
+
+.back-arrow {
+  color:
+    #58e6ff;
+
+  font-size:
+    13px;
+
+  text-shadow:
+    0 0 5px
+      rgba(
+        88,
+        230,
+        255,
+        0.45
+      );
+}
+
+
+
+/* ==========================================================
+   SLIDER
+   ========================================================== */
 
 .projects-slider {
   position: relative;
+
   z-index: 2;
 
   width: 100%;
-  height: calc(100vh - 150px);
+
+  height:
+    calc(
+      100vh - 150px
+    );
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
-  perspective: 1200px;
+  perspective:
+    1200px;
 }
+
+
+
+/* ==========================================================
+   TRACK
+   ========================================================== */
 
 .projects-track {
   position: relative;
 
   width: 100%;
+
   height: 560px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
-  transform-style: preserve-3d;
+  transform-style:
+    preserve-3d;
 }
 
-/* Individual project card */
+
+
+/* ==========================================================
+   PROJECT CARD
+   ========================================================== */
 
 .project-card {
   --card-position: 0;
@@ -138,281 +299,898 @@
 
   position: absolute;
 
-  width: min(340px, 72vw);
-  height: 480px;
+  width:
+    min(
+      340px,
+      72vw
+    );
+
+  height:
+    480px;
 
   overflow: hidden;
 
-  background: #111111;
+  background:
+    #04090d;
 
-  border: 2px solid rgba(255, 255, 255, 0.18);
-  border-radius: 3px;
+  border:
+    1px solid
+    rgba(
+      88,
+      230,
+      255,
+      0.16
+    );
 
-  opacity: calc(1 - var(--card-distance) * 0.22);
+  border-radius:
+    1px;
+
+  opacity:
+    calc(
+      1 -
+      var(--card-distance) *
+      0.22
+    );
 
   transform:
-    translateX(calc(var(--card-position) * 390px))
-    translateZ(calc(var(--card-distance) * -150px))
-    rotateY(calc(var(--card-position) * -8deg))
-    scale(calc(1 - var(--card-distance) * 0.12));
+    translateX(
+      calc(
+        var(--card-position) *
+        390px
+      )
+    )
+
+    translateZ(
+      calc(
+        var(--card-distance) *
+        -150px
+      )
+    )
+
+    rotateY(
+      calc(
+        var(--card-position) *
+        -8deg
+      )
+    )
+
+    scale(
+      calc(
+        1 -
+        var(--card-distance) *
+        0.12
+      )
+    );
 
   filter:
-    grayscale(calc(var(--card-distance) * 0.75))
-    brightness(calc(1 - var(--card-distance) * 0.16));
+    grayscale(
+      calc(
+        var(--card-distance) *
+        0.55
+      )
+    )
+
+    brightness(
+      calc(
+        1 -
+        var(--card-distance) *
+        0.15
+      )
+    );
+
+  box-shadow:
+    0 0 0
+      rgba(
+        88,
+        230,
+        255,
+        0
+      );
 
   transition:
-    transform 0.55s cubic-bezier(0.22, 0.8, 0.24, 1),
-    opacity 0.55s ease,
-    filter 0.55s ease,
-    border-color 0.55s ease;
+    transform
+      0.55s
+      cubic-bezier(
+        0.22,
+        0.8,
+        0.24,
+        1
+      ),
 
-  pointer-events: none;
+    opacity
+      0.55s
+      ease,
+
+    filter
+      0.55s
+      ease,
+
+    border-color
+      0.55s
+      ease,
+
+    box-shadow
+      0.55s
+      ease;
+
+  pointer-events:
+    none;
 }
+
+
+
+/* ==========================================================
+   ACTIVE CARD
+   ========================================================== */
 
 .project-card--active {
   z-index: 10;
 
   opacity: 1;
+
   filter: none;
 
-  border-color: rgba(255, 255, 255, 0.48);
+  border-color:
+    rgba(
+      88,
+      230,
+      255,
+      0.72
+    );
 
-  pointer-events: auto;
+  box-shadow:
+    0 0 4px
+      rgba(
+        88,
+        230,
+        255,
+        0.17
+      ),
+
+    0 0 16px
+      rgba(
+        88,
+        230,
+        255,
+        0.055
+      );
+
+  pointer-events:
+    auto;
 }
+
+
+
+/* subtle active top glow */
+
+.project-card--active::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  z-index: 10;
+
+  width: 100%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(
+        216,
+        247,
+        255,
+        0.75
+      ),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+
+
+/* ==========================================================
+   HIDDEN CARD
+   ========================================================== */
 
 .project-card--hidden {
   opacity: 0;
+
   visibility: hidden;
 }
 
-/* Pixel-style image */
+
+
+/* ==========================================================
+   PROJECT IMAGE
+   ========================================================== */
 
 .project-image {
   position: relative;
 
   width: 100%;
+
   height: 355px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   overflow: hidden;
 
   background:
     linear-gradient(
-      135deg,
-      rgba(88, 230, 255, 0.14),
-      rgba(255, 106, 166, 0.12)
-    ),
-    #171717;
+      180deg,
+      rgba(
+        15,
+        35,
+        49,
+        0.92
+      ),
+      rgba(
+        4,
+        10,
+        16,
+        0.98
+      )
+    );
 
-  background-position: center;
-  background-size: cover;
+  background-position:
+    center;
 
-  image-rendering: pixelated;
+  background-size:
+    cover;
+
+  image-rendering:
+    pixelated;
 }
+
+
+
+/* ==========================================================
+   IMAGE SCANLINES
+   ========================================================== */
 
 .project-image::before {
   content: "";
 
   position: absolute;
+
   inset: 0;
 
-  pointer-events: none;
+  pointer-events:
+    none;
 
-  opacity: 0.2;
+  opacity:
+    0.14;
 
   background-image:
     linear-gradient(
-      rgba(255, 255, 255, 0.12) 1px,
-      transparent 1px
+      rgba(
+        134,
+        215,
+        240,
+        0.12
+      )
+      1px,
+
+      transparent
+      1px
     );
 
-  background-size: 100% 5px;
+  background-size:
+    100% 5px;
 }
+
+
+
+/* ==========================================================
+   IMAGE EDGE TINT
+   ========================================================== */
 
 .project-image::after {
   content: "";
 
   position: absolute;
+
   inset: 0;
 
-  pointer-events: none;
+  pointer-events:
+    none;
 
   background:
     linear-gradient(
       90deg,
-      rgba(255, 106, 166, 0.08),
-      transparent 35%,
-      transparent 65%,
-      rgba(88, 230, 255, 0.08)
+
+      rgba(
+        28,
+        93,
+        120,
+        0.08
+      ),
+
+      transparent
+        32%,
+
+      transparent
+        68%,
+
+      rgba(
+        88,
+        230,
+        255,
+        0.08
+      )
     );
 }
 
-.project-placeholder {
-  color: rgba(255, 255, 255, 0.28);
 
-  font-family: "Press Start 2P", monospace;
-  font-size: 11px;
-  letter-spacing: 2px;
+
+/* ==========================================================
+   PLACEHOLDER
+   ========================================================== */
+
+.project-placeholder {
+  position: relative;
+
+  z-index: 2;
+
+  color:
+    rgba(
+      167,
+      207,
+      223,
+      0.28
+    );
+
+  font-family:
+    "Pixelify Sans",
+    monospace;
+
+  font-size:
+    10px;
+
+  font-weight:
+    400;
+
+  letter-spacing:
+    0.13em;
+
+  text-shadow:
+    0 0 4px
+      rgba(
+        88,
+        230,
+        255,
+        0.12
+      );
 }
 
-/* Information under the image */
+
+
+/* ==========================================================
+   INFORMATION AREA
+   ========================================================== */
 
 .project-information {
-  height: 125px;
-  padding: 16px 18px;
+  height:
+    125px;
+
+  padding:
+    16px 18px;
 
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto 1fr;
-  gap: 7px 14px;
 
-  background: #0d0d0d;
+  grid-template-columns:
+    1fr auto;
+
+  grid-template-rows:
+    auto 1fr;
+
+  gap:
+    7px 14px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #050b10,
+      #020608
+    );
+
+  border-top:
+    1px solid
+    rgba(
+      88,
+      230,
+      255,
+      0.12
+    );
 }
+
+
+
+/* ==========================================================
+   PROJECT TITLE
+   ========================================================== */
 
 .project-information h2 {
   grid-column: 1;
 
   margin: 0;
 
-  color: rgba(255, 255, 255, 0.94);
+  color:
+    rgba(
+      216,
+      247,
+      255,
+      0.94
+    );
 
-  font-family: "Press Start 2P", monospace;
-  font-size: 13px;
-  line-height: 1.45;
+  font-family:
+    "Pixelify Sans",
+    monospace;
+
+  font-size:
+    13px;
+
+  font-weight:
+    400;
+
+  line-height:
+    1.3;
+
+  letter-spacing:
+    0.025em;
+
+  text-shadow:
+    0 0 4px
+      rgba(
+        88,
+        230,
+        255,
+        0.12
+      );
 }
+
+
+
+/* ==========================================================
+   PROJECT DESCRIPTION
+   ========================================================== */
 
 .project-information p {
   grid-column: 1;
 
   margin: 0;
 
-  color: rgba(255, 255, 255, 0.48);
+  color:
+    rgba(
+      163,
+      197,
+      213,
+      0.58
+    );
 
-  font-family: "Share Tech Mono", monospace;
-  font-size: 15px;
-  line-height: 1.25;
+  font-family:
+    "Share Tech Mono",
+    monospace;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.28;
 }
+
+
+
+/* ==========================================================
+   YEAR
+   ========================================================== */
 
 .project-information span {
   grid-column: 2;
-  grid-row: 1 / span 2;
 
-  align-self: end;
+  grid-row:
+    1 / span 2;
 
-  color: rgba(255, 255, 255, 0.42);
+  align-self:
+    end;
 
-  font-family: "Share Tech Mono", monospace;
-  font-size: 14px;
+  color:
+    rgba(
+      132,
+      183,
+      203,
+      0.58
+    );
+
+  font-family:
+    "Share Tech Mono",
+    monospace;
+
+  font-size:
+    13px;
+
+  text-shadow:
+    0 0 4px
+      rgba(
+        88,
+        230,
+        255,
+        0.09
+      );
 }
 
-/* Arrow controls */
+
+
+/* ==========================================================
+   CONTROLS
+   ========================================================== */
 
 .projects-controls {
   position: absolute;
+
   left: 50%;
-  bottom: 42px;
+
+  bottom: 38px;
+
   z-index: 20;
 
   display: flex;
-  gap: 70px;
 
-  transform: translateX(-50%);
+  gap: 68px;
+
+  transform:
+    translateX(-50%);
 }
+
+
+
+/* ==========================================================
+   ARROW BUTTONS
+   ========================================================== */
 
 .project-arrow {
-  width: 60px;
-  height: 48px;
+  position: relative;
+
+  width: 48px;
+
+  height: 36px;
+
+  padding: 0;
 
   border: 0;
-  background: transparent;
 
-  color: rgba(255, 255, 255, 0.48);
+  background:
+    transparent;
 
-  font-family: "Press Start 2P", monospace;
-  font-size: 24px;
+  color:
+    rgba(
+      139,
+      192,
+      213,
+      0.56
+    );
+
+  font-family:
+    "Pixelify Sans",
+    monospace;
+
+  font-size:
+    24px;
+
+  font-weight:
+    400;
+
+  line-height:
+    1;
 
   transition:
-    color 0.18s ease,
-    transform 0.18s ease,
-    text-shadow 0.18s ease;
+    color 170ms ease,
+    transform 170ms ease,
+    text-shadow 170ms ease,
+    filter 170ms ease;
 }
+
+
+
+/* ==========================================================
+   LITTLE CYAN CONTROL LINE
+   ========================================================== */
+
+.project-arrow::before {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+
+  width: 15px;
+
+  height: 1px;
+
+  background:
+    rgba(
+      88,
+      230,
+      255,
+      0.24
+    );
+
+  transition:
+    width 170ms ease,
+    background 170ms ease,
+    box-shadow 170ms ease;
+}
+
+
+.project-arrow--previous::before {
+  right: 34px;
+}
+
+
+.project-arrow--next::before {
+  left: 34px;
+}
+
+
+
+/* ==========================================================
+   ARROW HOVER
+   ========================================================== */
 
 .project-arrow:hover {
-  color: #ffffff;
-  transform: scale(1.12);
+  color:
+    #eafaff;
+
+  filter:
+    brightness(1.3);
 
   text-shadow:
-    0 0 7px #ffffff,
-    0 0 14px rgba(88, 230, 255, 0.65),
-    0 0 20px rgba(255, 106, 166, 0.35);
+    0 0 4px
+      rgba(
+        216,
+        247,
+        255,
+        0.9
+      ),
+
+    0 0 9px
+      rgba(
+        88,
+        230,
+        255,
+        0.55
+      ),
+
+    0 0 17px
+      rgba(
+        88,
+        230,
+        255,
+        0.18
+      );
 }
+
+
+.project-arrow:hover::before {
+  width: 23px;
+
+  background:
+    rgba(
+      88,
+      230,
+      255,
+      0.72
+    );
+
+  box-shadow:
+    0 0 6px
+      rgba(
+        88,
+        230,
+        255,
+        0.38
+      );
+}
+
+
+.project-arrow--previous:hover {
+  transform:
+    translateX(-3px);
+}
+
+
+.project-arrow--next:hover {
+  transform:
+    translateX(3px);
+}
+
+
+
+/* ==========================================================
+   ARROW ACTIVE
+   ========================================================== */
 
 .project-arrow:active {
-  transform: scale(0.92);
+  transform:
+    scale(0.88);
 }
 
+
+
+/* ==========================================================
+   STAR ANIMATION
+   ========================================================== */
+
 @keyframes projects-stars-blink {
+
   0%,
   42% {
-    opacity: 0.18;
+    opacity:
+      0.13;
   }
 
   43%,
   70% {
-    opacity: 0.3;
+    opacity:
+      0.23;
   }
 
   71%,
   100% {
-    opacity: 0.22;
+    opacity:
+      0.17;
   }
 }
 
-@media (max-width: 900px) {
+
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (
+  max-width: 900px
+) {
+
   .project-card {
-    width: min(310px, 72vw);
+    width:
+      min(
+        310px,
+        72vw
+      );
 
     transform:
-      translateX(calc(var(--card-position) * 300px))
-      translateZ(calc(var(--card-distance) * -140px))
-      rotateY(calc(var(--card-position) * -7deg))
-      scale(calc(1 - var(--card-distance) * 0.13));
+      translateX(
+        calc(
+          var(--card-position) *
+          300px
+        )
+      )
+
+      translateZ(
+        calc(
+          var(--card-distance) *
+          -140px
+        )
+      )
+
+      rotateY(
+        calc(
+          var(--card-position) *
+          -7deg
+        )
+      )
+
+      scale(
+        calc(
+          1 -
+          var(--card-distance) *
+          0.13
+        )
+      );
   }
+
 }
 
-@media (max-width: 600px) {
-  .projects-slider {
-    height: calc(100vh - 125px);
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (
+  max-width: 600px
+) {
+
+  .projects-back-button {
+    top: 20px;
+
+    left: 18px;
   }
+
+
+  .projects-slider {
+    height:
+      calc(
+        100vh - 125px
+      );
+  }
+
 
   .projects-track {
-    height: 500px;
+    height:
+      500px;
   }
+
 
   .project-card {
-    width: 76vw;
-    height: 430px;
+    width:
+      76vw;
+
+    height:
+      430px;
 
     transform:
-      translateX(calc(var(--card-position) * 245px))
-      translateZ(calc(var(--card-distance) * -140px))
-      rotateY(calc(var(--card-position) * -6deg))
-      scale(calc(1 - var(--card-distance) * 0.14));
+      translateX(
+        calc(
+          var(--card-position) *
+          245px
+        )
+      )
+
+      translateZ(
+        calc(
+          var(--card-distance) *
+          -140px
+        )
+      )
+
+      rotateY(
+        calc(
+          var(--card-position) *
+          -6deg
+        )
+      )
+
+      scale(
+        calc(
+          1 -
+          var(--card-distance) *
+          0.14
+        )
+      );
   }
+
 
   .project-image {
-    height: 310px;
+    height:
+      310px;
   }
+
 
   .project-information {
-    height: 120px;
+    height:
+      120px;
   }
 
+
   .projects-controls {
-    bottom: 25px;
-    gap: 55px;
+    bottom:
+      25px;
+
+    gap:
+      55px;
   }
+
 }

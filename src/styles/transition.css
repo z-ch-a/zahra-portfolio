@@ -1,0 +1,540 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+
+/* ==========================================================
+   PAGE TRANSITION
+   Same visual language as intro
+   ========================================================== */
+
+.page-transition {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 200000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background:
+    #000000;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  overflow: hidden;
+
+  pointer-events: all;
+
+  transition:
+    opacity 0.18s
+      steps(6, end),
+
+    visibility 0.18s;
+}
+
+
+/* ==========================================================
+   VISIBLE
+   ========================================================== */
+
+.page-transition--visible {
+  opacity: 1;
+
+  visibility: visible;
+}
+
+
+/* ==========================================================
+   CONTENT
+   ========================================================== */
+
+.page-transition-content {
+  position: relative;
+
+  z-index: 2;
+
+  width:
+    min(
+      650px,
+      84vw
+    );
+
+  font-family:
+    "Share Tech Mono",
+    "Courier New",
+    monospace;
+
+  color:
+    #d8f7ff;
+}
+
+
+/* ==========================================================
+   TERMINAL LINES
+   ========================================================== */
+
+.page-transition-terminal-line {
+  margin-bottom:
+    10px;
+
+  font-size:
+    clamp(
+      17px,
+      1.45vw,
+      23px
+    );
+
+  line-height:
+    1.5;
+
+  letter-spacing:
+    0.055em;
+
+  color:
+    #d8f7ff;
+
+  text-shadow:
+    0 0 3px
+      rgba(
+        216,
+        247,
+        255,
+        0.95
+      ),
+
+    0 0 9px
+      rgba(
+        88,
+        230,
+        255,
+        0.48
+      );
+}
+
+
+/* ==========================================================
+   STATUS
+   ========================================================== */
+
+.page-transition-status {
+  color:
+    rgba(
+      216,
+      247,
+      255,
+      0.76
+    );
+}
+
+
+/* ==========================================================
+   DOTS
+   ========================================================== */
+
+.page-transition-dots::after {
+  content: "";
+
+  animation:
+    transition-dots
+    0.8s
+    steps(4, end)
+    infinite;
+}
+
+
+@keyframes transition-dots {
+
+  0% {
+    content: "";
+  }
+
+  25% {
+    content: ".";
+  }
+
+  50% {
+    content: "..";
+  }
+
+  75%,
+  100% {
+    content: "...";
+  }
+}
+
+
+/* ==========================================================
+   LOADING AREA
+   ========================================================== */
+
+.page-transition-loading {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  margin-top:
+    28px;
+}
+
+
+/* ==========================================================
+   BAR CONTAINER
+   ========================================================== */
+
+.page-transition-bar {
+  position: relative;
+
+  flex: 1;
+
+  height: 9px;
+
+  padding: 2px;
+
+  box-sizing:
+    border-box;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(
+      216,
+      247,
+      255,
+      0.42
+    );
+
+  background:
+    rgba(
+      6,
+      19,
+      25,
+      0.72
+    );
+
+  box-shadow:
+    0 0 4px
+      rgba(
+        88,
+        230,
+        255,
+        0.14
+      );
+}
+
+
+/* ==========================================================
+   BAR FILL
+   ========================================================== */
+
+.page-transition-bar-fill {
+  position: relative;
+
+  width: 0%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #316b80,
+      #58e6ff,
+      #d8f7ff
+    );
+
+  box-shadow:
+    0 0 4px
+      rgba(
+        88,
+        230,
+        255,
+        0.65
+      ),
+
+    0 0 10px
+      rgba(
+        88,
+        230,
+        255,
+        0.25
+      );
+
+  transition:
+    width 35ms linear;
+}
+
+
+/* pixel segmentation */
+
+.page-transition-bar-fill::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+
+      transparent 0,
+      transparent 7px,
+
+      rgba(
+        0,
+        0,
+        0,
+        0.28
+      ) 8px
+    );
+}
+
+
+/* ==========================================================
+   PERCENTAGE
+   ========================================================== */
+
+.page-transition-percent {
+  width:
+    46px;
+
+  flex:
+    0 0 46px;
+
+  font-family:
+    "Share Tech Mono",
+    "Courier New",
+    monospace;
+
+  font-size:
+    clamp(
+      13px,
+      1vw,
+      16px
+    );
+
+  letter-spacing:
+    0.08em;
+
+  text-align:
+    right;
+
+  color:
+    rgba(
+      216,
+      247,
+      255,
+      0.72
+    );
+
+  text-shadow:
+    0 0 4px
+      rgba(
+        88,
+        230,
+        255,
+        0.25
+      );
+}
+
+
+/* ==========================================================
+   READY
+   ========================================================== */
+
+.page-transition-ready {
+  margin-top:
+    20px;
+
+  font-family:
+    "Share Tech Mono",
+    "Courier New",
+    monospace;
+
+  font-size:
+    clamp(
+      16px,
+      1.35vw,
+      21px
+    );
+
+  letter-spacing:
+    0.055em;
+
+  color:
+    #d8f7ff;
+
+  opacity: 0;
+
+  transform:
+    translateY(3px);
+
+  text-shadow:
+    0 0 3px
+      rgba(
+        216,
+        247,
+        255,
+        0.95
+      ),
+
+    0 0 9px
+      rgba(
+        88,
+        230,
+        255,
+        0.50
+      );
+
+  transition:
+    opacity 100ms ease,
+    transform 100ms ease;
+}
+
+
+.page-transition-ready--visible {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+
+/* ==========================================================
+   COMPLETE
+   ========================================================== */
+
+.page-transition--complete
+.page-transition-bar-fill {
+  background:
+    #d8f7ff;
+
+  box-shadow:
+    0 0 5px
+      rgba(
+        216,
+        247,
+        255,
+        0.95
+      ),
+
+    0 0 14px
+      rgba(
+        88,
+        230,
+        255,
+        0.55
+      );
+}
+
+
+/* ==========================================================
+   VERY SUBTLE SCANLINES
+   ========================================================== */
+
+.page-transition::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events:
+    none;
+
+  opacity:
+    0.035;
+
+  background:
+    repeating-linear-gradient(
+      180deg,
+
+      transparent 0,
+      transparent 3px,
+
+      rgba(
+        88,
+        230,
+        255,
+        0.20
+      ) 4px
+    );
+}
+
+
+/* ==========================================================
+   EXIT
+   ========================================================== */
+
+.page-transition--exit {
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    opacity 0.45s
+      steps(8, end),
+
+    visibility 0.45s;
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+  .page-transition-content {
+    width: 86vw;
+  }
+
+
+  .page-transition-loading {
+    gap: 12px;
+
+    margin-top:
+      22px;
+  }
+
+
+  .page-transition-terminal-line {
+    font-size:
+      16px;
+  }
+
+
+  .page-transition-ready {
+    font-size:
+      15px;
+  }
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+
+  .page-transition,
+  .page-transition-dots::after,
+  .page-transition-ready {
+    animation: none;
+
+    transition: none;
+  }
+}

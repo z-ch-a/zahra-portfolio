@@ -1,0 +1,235 @@
+/* ==========================================================
+   ANIMATED STAR LAYER
+   ========================================================== */
+
+.animated-stars {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 6;
+
+  overflow: hidden;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* ==========================================================
+   BASIC STAR
+   ========================================================== */
+
+.animated-star {
+  position: absolute;
+
+  left: var(--star-x);
+  top: var(--star-y);
+
+  width: var(--star-size);
+  height: var(--star-size);
+
+  border-radius: 50%;
+
+  background: rgba(205, 235, 255, 0.85);
+
+  opacity: 0.18;
+
+  box-shadow:
+    0 0 3px rgba(160, 220, 255, 0.25);
+
+  animation:
+    starBlink var(--star-duration)
+    ease-in-out
+    var(--star-delay)
+    infinite;
+}
+
+
+/* ==========================================================
+   NORMAL BLINK
+   ========================================================== */
+
+@keyframes starBlink {
+
+  0%,
+  100% {
+    opacity: 0.15;
+
+    transform: scale(0.8);
+
+    box-shadow:
+      0 0 2px rgba(150, 210, 255, 0.12);
+  }
+
+  35% {
+    opacity: 0.30;
+  }
+
+  50% {
+    opacity: 0.95;
+
+    transform: scale(1.15);
+
+    box-shadow:
+      0 0 4px rgba(200, 240, 255, 0.55),
+      0 0 8px rgba(100, 190, 255, 0.22);
+  }
+
+  65% {
+    opacity: 0.28;
+  }
+}
+
+
+/* ==========================================================
+   STRONGER SPARKLE STARS
+   Only a few stars use this
+   ========================================================== */
+
+.animated-star--sparkle {
+  width: 2px;
+  height: 2px;
+
+  background: #eaf9ff;
+
+  border-radius: 0;
+
+  animation-name: starSparkle;
+}
+
+
+/* horizontal sparkle */
+
+.animated-star--sparkle::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 8px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(190, 235, 255, 0.6),
+      transparent
+    );
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%);
+}
+
+
+/* vertical sparkle */
+
+.animated-star--sparkle::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 1px;
+  height: 8px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(190, 235, 255, 0.6),
+      transparent
+    );
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%);
+}
+
+
+.animated-star--sparkle::before,
+.animated-star--sparkle::after {
+  animation:
+    sparkleCross
+    var(--star-duration)
+    ease-in-out
+    var(--star-delay)
+    infinite;
+}
+
+
+/* ==========================================================
+   SPARKLE ANIMATION
+   ========================================================== */
+
+@keyframes starSparkle {
+
+  0%,
+  100% {
+    opacity: 0.12;
+
+    transform: scale(0.7);
+  }
+
+  42% {
+    opacity: 0.22;
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.25);
+
+    box-shadow:
+      0 0 5px rgba(215, 245, 255, 0.75),
+      0 0 12px rgba(90, 190, 255, 0.3);
+  }
+
+  58% {
+    opacity: 0.22;
+  }
+}
+
+
+@keyframes sparkleCross {
+
+  0%,
+  42%,
+  58%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animated-star,
+  .animated-star--sparkle::before,
+  .animated-star--sparkle::after {
+    animation: none;
+  }
+
+  .animated-star {
+    opacity: 0.35;
+  }
+}
