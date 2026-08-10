@@ -1,6 +1,10 @@
 import "../styles/project-window.css";
 
 
+/* ==========================================================
+   CREATE PROJECT WINDOW
+   ========================================================== */
+
 export function createProjectWindow() {
 
   return `
@@ -15,15 +19,19 @@ export function createProjectWindow() {
         id="project-window"
       >
 
-        <!-- ===============================
+
+        <!-- ================================================
              TITLE BAR
-             =============================== -->
+             ================================================ -->
 
         <header class="project-window-header">
 
           <div class="project-window-title">
 
-            <span class="project-window-title-dot"></span>
+            <span
+              class="project-window-title-dot"
+            ></span>
+
 
             <span id="project-window-title">
               PROJECT
@@ -64,90 +72,37 @@ export function createProjectWindow() {
 
 
 
-        <!-- ===============================
-             SCROLLABLE CONTENT
-             =============================== -->
+        <!-- ================================================
+             PORTFOLIO CONTENT
+             ================================================ -->
 
         <div
           class="project-window-content"
           id="project-window-content"
         >
 
-          <div class="project-document">
-
-
-            <!-- PAGE 01 -->
-
-            <div class="project-document-page">
-
-              <div class="project-demo-content">
-
-                <div>
-
-                  <h1 id="project-document-title">
-                    The Vena
-                  </h1>
-
-                  <p id="project-document-subtitle">
-                    Beyond printed objects toward
-                    architectural systems
-                  </p>
-
-                </div>
-
-
-                <div class="project-demo-image">
-                  PROJECT PAGE 01
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            <!-- PAGE 02 -->
-
-            <div class="project-document-page">
-
-              <span>
-                PROJECT PAGE 02
-              </span>
-
-            </div>
-
-
-
-            <!-- PAGE 03 -->
-
-            <div class="project-document-page">
-
-              <span>
-                PROJECT PAGE 03
-              </span>
-
-            </div>
-
-
-          </div>
+          <div
+            class="project-document"
+            id="project-document"
+          ></div>
 
         </div>
 
 
 
-        <!-- ===============================
+        <!-- ================================================
              STATUS BAR
-             =============================== -->
+             ================================================ -->
 
         <footer class="project-window-footer">
 
           <span id="project-window-page">
-            01 / 03
+            00 / 00
           </span>
 
 
           <span id="project-window-meta">
-            THE VENA / 2026
+            PROJECT
           </span>
 
         </footer>
@@ -184,6 +139,12 @@ export function startProjectWindow() {
     );
 
 
+  const projectDocument =
+    document.querySelector(
+      "#project-document"
+    );
+
+
   const closeButton =
     document.querySelector(
       "#project-window-close"
@@ -202,27 +163,23 @@ export function startProjectWindow() {
     );
 
 
-  const documentTitle =
-    document.querySelector(
-      "#project-document-title"
-    );
-
-
-  const documentSubtitle =
-    document.querySelector(
-      "#project-document-subtitle"
-    );
-
-
   const meta =
     document.querySelector(
       "#project-window-meta"
     );
 
 
+  const pageCounter =
+    document.querySelector(
+      "#project-window-page"
+    );
+
+
   if (
     !overlay ||
     !windowElement ||
+    !content ||
+    !projectDocument ||
     !closeButton ||
     !maximizeButton
   ) {
@@ -230,8 +187,207 @@ export function startProjectWindow() {
   }
 
 
-
   let isMaximized = false;
+
+
+
+  /* ========================================================
+     RENDER PORTFOLIO PAGES
+     ======================================================== */
+
+  function renderProjectPages(
+    project
+  ) {
+
+    const pages =
+      Array.isArray(project.pages)
+        ? project.pages
+        : [];
+
+
+    /*
+      Project does not have
+      portfolio pages yet.
+    */
+
+    if (!pages.length) {
+
+      projectDocument.innerHTML = `
+        <div class="project-document-empty">
+
+          <span>
+            PROJECT CONTENT COMING SOON
+          </span>
+
+        </div>
+      `;
+
+
+      if (pageCounter) {
+
+        pageCounter.textContent =
+          "00 / 00";
+
+      }
+
+
+      return;
+    }
+
+
+
+    /*
+      Build portfolio pages.
+    */
+
+    projectDocument.innerHTML =
+      pages
+        .map(
+          (page, index) => {
+
+            const loading =
+              index === 0
+                ? "eager"
+                : "lazy";
+
+
+            return `
+              <div
+                class="project-document-page"
+                data-page-number="${index + 1}"
+              >
+
+                <img
+                  class="project-document-image"
+                  src="${page}"
+                  alt="${project.title} portfolio page ${index + 1}"
+                  loading="${loading}"
+                  decoding="async"
+                  draggable="false"
+                >
+
+              </div>
+            `;
+          }
+        )
+        .join("");
+
+
+    if (pageCounter) {
+
+      pageCounter.textContent =
+        `01 / ${String(
+          pages.length
+        ).padStart(2, "0")}`;
+
+    }
+
+  }
+
+
+
+  /* ========================================================
+     PAGE COUNTER
+     ======================================================== */
+
+  function updateVisiblePage() {
+
+    const pages =
+      Array.from(
+        projectDocument.querySelectorAll(
+          ".project-document-page"
+        )
+      );
+
+
+    if (
+      !pages.length ||
+      !pageCounter
+    ) {
+      return;
+    }
+
+
+    const contentRect =
+      content.getBoundingClientRect();
+
+
+    /*
+      We calculate which portfolio
+      page is closest to the middle
+      of the viewer.
+    */
+
+    const viewportCenter =
+      contentRect.top +
+      contentRect.height / 2;
+
+
+    let closestPage = 0;
+
+    let closestDistance =
+      Infinity;
+
+
+    pages.forEach(
+      (page, index) => {
+
+        const rect =
+          page.getBoundingClientRect();
+
+
+        const pageCenter =
+          rect.top +
+          rect.height / 2;
+
+
+        const distance =
+          Math.abs(
+            viewportCenter -
+            pageCenter
+          );
+
+
+        if (
+          distance <
+          closestDistance
+        ) {
+
+          closestDistance =
+            distance;
+
+
+          closestPage =
+            index;
+
+        }
+
+      }
+    );
+
+
+    pageCounter.textContent =
+      `${String(
+        closestPage + 1
+      ).padStart(2, "0")} / ${String(
+        pages.length
+      ).padStart(2, "0")}`;
+
+  }
+
+
+
+  /* ========================================================
+     SCROLL LISTENER
+     ======================================================== */
+
+  content.addEventListener(
+    "scroll",
+    updateVisiblePage,
+    {
+      passive: true,
+    }
+  );
 
 
 
@@ -252,36 +408,44 @@ export function startProjectWindow() {
       }
 
 
-      /* PROJECT INFORMATION */
+
+      /* -----------------------------------------------
+         PROJECT TITLE
+         ----------------------------------------------- */
 
       if (title) {
+
         title.textContent =
           project.title;
-      }
 
-
-      if (documentTitle) {
-        documentTitle.textContent =
-          project.title;
-      }
-
-
-      if (documentSubtitle) {
-        documentSubtitle.textContent =
-          project.subtitle;
       }
 
 
       if (meta) {
+
         meta.textContent =
           `${project.title.toUpperCase()} / ${project.year}`;
+
       }
 
 
 
-      /* RESET MAXIMIZED STATE */
+      /* -----------------------------------------------
+         BUILD PORTFOLIO
+         ----------------------------------------------- */
 
-      isMaximized = false;
+      renderProjectPages(
+        project
+      );
+
+
+
+      /* -----------------------------------------------
+         RESET MAXIMIZE
+         ----------------------------------------------- */
+
+      isMaximized =
+        false;
 
 
       windowElement.classList.remove(
@@ -311,15 +475,18 @@ export function startProjectWindow() {
 
 
 
-      /* RESET SCROLL */
+      /* -----------------------------------------------
+         RESET SCROLL
+         ----------------------------------------------- */
 
-      if (content) {
-        content.scrollTop = 0;
-      }
+      content.scrollTop =
+        0;
 
 
 
-      /* SHOW */
+      /* -----------------------------------------------
+         SHOW WINDOW
+         ----------------------------------------------- */
 
       overlay.hidden =
         false;
@@ -336,6 +503,9 @@ export function startProjectWindow() {
           windowElement.classList.add(
             "project-window--visible"
           );
+
+
+          updateVisiblePage();
 
         }
       );
@@ -367,17 +537,11 @@ export function startProjectWindow() {
     );
 
 
-
-    /* CHANGE ICON */
-
     maximizeButton.textContent =
       isMaximized
         ? "❐"
         : "□";
 
-
-
-    /* ACCESSIBILITY */
 
     maximizeButton.setAttribute(
       "aria-label",
@@ -394,7 +558,19 @@ export function startProjectWindow() {
         : "Maximize"
     );
 
+
+    /*
+      Recalculate visible page after
+      the window changes size.
+    */
+
+    window.setTimeout(
+      updateVisiblePage,
+      280
+    );
+
   }
+
 
 
   maximizeButton.addEventListener(
@@ -427,7 +603,9 @@ export function startProjectWindow() {
           true;
 
 
-        /* reset maximize after closing */
+        content.scrollTop =
+          0;
+
 
         isMaximized =
           false;
@@ -469,12 +647,12 @@ export function startProjectWindow() {
     "keydown",
     (event) => {
 
-      if (overlay.hidden) {
+      if (
+        overlay.hidden
+      ) {
         return;
       }
 
-
-      /* ESC CLOSES PROJECT */
 
       if (
         event.key ===

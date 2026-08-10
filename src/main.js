@@ -1,5 +1,8 @@
 import "./style.css";
 
+import {
+  startProjectMagnifier,
+} from "./components/ProjectMagnifier";
 
 import {
   createIntroScreen,
@@ -147,6 +150,8 @@ startProjectsPage();
 */
 
 startProjectWindow();
+
+startProjectMagnifier();
 
 
 /*

@@ -2,7 +2,7 @@
 
 
 /* ==========================================================
-   PROJECT WINDOW OVERLAY
+   OVERLAY
    ========================================================== */
 
 .project-window-overlay {
@@ -28,7 +28,7 @@
       0,
       3,
       7,
-      0.74
+      0.76
     );
 
   opacity: 0;
@@ -53,7 +53,7 @@
 
 
 /* ==========================================================
-   MAIN PROJECT WINDOW
+   PROJECT WINDOW
    ========================================================== */
 
 .project-window {
@@ -96,20 +96,20 @@
 
   box-shadow:
     0 0 8px
-    rgba(
-      88,
-      230,
-      255,
-      0.10
-    ),
+      rgba(
+        88,
+        230,
+        255,
+        0.10
+      ),
 
     0 18px 60px
-    rgba(
-      0,
-      0,
-      0,
-      0.72
-    );
+      rgba(
+        0,
+        0,
+        0,
+        0.72
+      );
 
   opacity: 0;
 
@@ -141,7 +141,7 @@
 
 
 /* ==========================================================
-   MAXIMIZED WINDOW
+   MAXIMIZED
    ========================================================== */
 
 .project-window-overlay--maximized {
@@ -215,7 +215,7 @@
 
 
 /* ==========================================================
-   WINDOW TITLE
+   TITLE
    ========================================================== */
 
 .project-window-title {
@@ -254,18 +254,18 @@
 
   text-shadow:
     0 0 4px
-    rgba(
-      88,
-      230,
-      255,
-      0.12
-    );
+      rgba(
+        88,
+        230,
+        255,
+        0.12
+      );
 }
 
 
 
 /* ==========================================================
-   SMALL CYAN STATUS PIXEL
+   STATUS PIXEL
    ========================================================== */
 
 .project-window-title-dot {
@@ -279,18 +279,18 @@
 
   box-shadow:
     0 0 5px
-    rgba(
-      88,
-      230,
-      255,
-      0.65
-    );
+      rgba(
+        88,
+        230,
+        255,
+        0.65
+      );
 }
 
 
 
 /* ==========================================================
-   WINDOW ACTIONS
+   ACTIONS
    ========================================================== */
 
 .project-window-actions {
@@ -303,11 +303,6 @@
   margin-left: auto;
 }
 
-
-
-/* ==========================================================
-   MAXIMIZE / CLOSE BUTTONS
-   ========================================================== */
 
 .project-window-action {
   position: relative;
@@ -350,7 +345,8 @@
     color 150ms ease,
     background 150ms ease,
     text-shadow 150ms ease,
-    filter 150ms ease;
+    filter 150ms ease,
+    transform 100ms ease;
 }
 
 
@@ -371,41 +367,28 @@
 
   text-shadow:
     0 0 4px
-    rgba(
-      216,
-      247,
-      255,
-      0.72
-    ),
+      rgba(
+        216,
+        247,
+        255,
+        0.72
+      ),
 
     0 0 8px
-    rgba(
-      88,
-      230,
-      255,
-      0.45
-    );
+      rgba(
+        88,
+        230,
+        255,
+        0.45
+      );
 }
 
 
 .project-window-action:active {
-  background:
-    rgba(
-      88,
-      230,
-      255,
-      0.12
-    );
-
   transform:
-    scale(0.92);
+    scale(0.9);
 }
 
-
-
-/* ==========================================================
-   CLOSE BUTTON
-   ========================================================== */
 
 .project-window-close:hover {
   color:
@@ -421,26 +404,26 @@
 
   text-shadow:
     0 0 5px
-    rgba(
-      216,
-      247,
-      255,
-      0.85
-    ),
+      rgba(
+        216,
+        247,
+        255,
+        0.85
+      ),
 
     0 0 10px
-    rgba(
-      88,
-      230,
-      255,
-      0.55
-    );
+      rgba(
+        88,
+        230,
+        255,
+        0.55
+      );
 }
 
 
 
 /* ==========================================================
-   SCROLLABLE PROJECT AREA
+   SCROLLABLE PORTFOLIO AREA
    ========================================================== */
 
 .project-window-content {
@@ -473,7 +456,7 @@
 
 
 /* ==========================================================
-   CHROME / EDGE SCROLLBAR
+   SCROLLBAR
    ========================================================== */
 
 .project-window-content::-webkit-scrollbar {
@@ -515,38 +498,7 @@
 
 
 /* ==========================================================
-   VERY SUBTLE BACKGROUND TEXTURE
-   ========================================================== */
-
-.project-window-content::before {
-  content: "";
-
-  position: fixed;
-
-  pointer-events: none;
-
-  opacity: 0.025;
-
-  background:
-    repeating-linear-gradient(
-      180deg,
-
-      transparent 0,
-      transparent 3px,
-
-      rgba(
-        88,
-        230,
-        255,
-        0.25
-      ) 4px
-    );
-}
-
-
-
-/* ==========================================================
-   PROJECT DOCUMENT
+   DOCUMENT
    ========================================================== */
 
 .project-document {
@@ -555,9 +507,9 @@
   width: 100%;
 
   padding:
-    55px
+    48px
     0
-    70px;
+    65px;
 
   box-sizing: border-box;
 
@@ -567,13 +519,13 @@
 
   align-items: center;
 
-  gap: 45px;
+  gap: 38px;
 }
 
 
 
 /* ==========================================================
-   INDIVIDUAL PORTFOLIO PAGE
+   REAL PORTFOLIO PAGE
    ========================================================== */
 
 .project-document-page {
@@ -582,35 +534,100 @@
   width:
     min(
       1180px,
-      84%
+      86%
     );
 
-  aspect-ratio:
-    1.414 / 1;
-
   flex: none;
+
+  display: block;
+
+  overflow: hidden;
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 8px 30px
+      rgba(
+        0,
+        0,
+        0,
+        0.48
+      );
+
+  transition:
+    box-shadow 220ms ease;
+}
+
+
+.project-document-page:hover {
+  box-shadow:
+    0 10px 40px
+      rgba(
+        0,
+        0,
+        0,
+        0.58
+      );
+}
+
+
+
+/* ==========================================================
+   REAL JPG
+   ========================================================== */
+
+.project-document-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  margin: 0;
+
+  padding: 0;
+
+  object-fit: contain;
+
+  image-rendering: auto;
+
+  user-select: none;
+
+  pointer-events: none;
+}
+
+
+
+/* ==========================================================
+   EMPTY PROJECT
+   ========================================================== */
+
+.project-document-empty {
+  width: 100%;
+
+  min-height:
+    55vh;
 
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  box-sizing: border-box;
+  font-family:
+    "Share Tech Mono",
+    monospace;
 
-  overflow: hidden;
+  font-size:
+    11px;
 
-  background:
-    #f4f4f2;
+  letter-spacing:
+    0.14em;
 
   color:
-    #222222;
-
-  box-shadow:
-    0 8px 30px
     rgba(
-      0,
-      0,
-      0,
+      130,
+      183,
+      204,
       0.42
     );
 }
@@ -618,180 +635,7 @@
 
 
 /* ==========================================================
-   PAGE HOVER
-
-   Very subtle lift only
-   ========================================================== */
-
-.project-document-page {
-  transition:
-    box-shadow 220ms ease,
-    transform 220ms ease;
-}
-
-
-.project-document-page:hover {
-  box-shadow:
-    0 10px 38px
-    rgba(
-      0,
-      0,
-      0,
-      0.52
-    );
-}
-
-
-
-/* ==========================================================
-   TEMPORARY FIRST PAGE CONTENT
-
-   This will later be replaced by your real portfolio pages.
-   ========================================================== */
-
-.project-demo-content {
-  width: 100%;
-  height: 100%;
-
-  padding:
-    7%;
-
-  box-sizing: border-box;
-
-  display: grid;
-
-  grid-template-columns:
-    0.9fr
-    1.3fr;
-
-  gap:
-    8%;
-
-  align-items: center;
-}
-
-
-
-/* ==========================================================
-   TEMP PROJECT TITLE
-   ========================================================== */
-
-.project-demo-content h1 {
-  margin:
-    0
-    0
-    12px;
-
-  font-family:
-    "Share Tech Mono",
-    monospace;
-
-  font-size:
-    clamp(
-      24px,
-      2vw,
-      40px
-    );
-
-  font-weight: 400;
-
-  line-height: 1.1;
-
-  color:
-    #303030;
-}
-
-
-
-/* ==========================================================
-   TEMP PROJECT SUBTITLE
-   ========================================================== */
-
-.project-demo-content p {
-  max-width:
-    380px;
-
-  margin: 0;
-
-  font-family:
-    "Share Tech Mono",
-    monospace;
-
-  font-size:
-    clamp(
-      12px,
-      1vw,
-      17px
-    );
-
-  line-height:
-    1.4;
-
-  color:
-    #676767;
-}
-
-
-
-/* ==========================================================
-   TEMP PROJECT IMAGE PLACEHOLDER
-   ========================================================== */
-
-.project-demo-image {
-  height: 100%;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  background:
-    #d6d8d8;
-
-  font-family:
-    "Share Tech Mono",
-    monospace;
-
-  font-size:
-    12px;
-
-  letter-spacing:
-    0.08em;
-
-  color:
-    #666666;
-}
-
-
-
-/* ==========================================================
-   TEMP OTHER PAGE PLACEHOLDERS
-   ========================================================== */
-
-.project-document-page > span {
-  font-family:
-    "Share Tech Mono",
-    monospace;
-
-  font-size:
-    12px;
-
-  letter-spacing:
-    0.12em;
-
-  color:
-    rgba(
-      0,
-      0,
-      0,
-      0.25
-    );
-}
-
-
-
-/* ==========================================================
-   WINDOW FOOTER
+   FOOTER
    ========================================================== */
 
 .project-window-footer {
@@ -857,18 +701,19 @@
 
 
 /* ==========================================================
-   MAXIMIZED MODE CONTENT
-
-   Give the portfolio slightly more room.
+   MAXIMIZED PORTFOLIO
    ========================================================== */
 
 .project-window--maximized
 .project-document {
   padding-top:
-    50px;
+    45px;
 
   padding-bottom:
     70px;
+
+  gap:
+    42px;
 }
 
 
@@ -876,7 +721,7 @@
 .project-document-page {
   width:
     min(
-      1380px,
+      1450px,
       88%
     );
 }
@@ -921,18 +766,18 @@
 
   .project-document {
     padding:
-      40px
+      36px
       0
-      55px;
+      50px;
 
     gap:
-      34px;
+      30px;
   }
 
 
   .project-document-page {
     width:
-      88%;
+      90%;
   }
 
 }
@@ -1009,40 +854,25 @@
 
   .project-document {
     padding:
-      28px
+      25px
       0
-      42px;
+      40px;
 
     gap:
-      26px;
+      22px;
   }
 
 
-  .project-document-page {
-    width:
-      92%;
-  }
-
-
-  .project-window--maximized
   .project-document-page {
     width:
       94%;
   }
 
 
-  .project-demo-content {
-    grid-template-columns:
-      1fr;
-
-    gap:
-      24px;
-  }
-
-
-  .project-demo-image {
-    min-height:
-      180px;
+  .project-window--maximized
+  .project-document-page {
+    width:
+      96%;
   }
 
 

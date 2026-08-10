@@ -27,8 +27,9 @@
 }
 
 
+
 /* ==========================================================
-   SUBTLE CYAN STAR FIELD
+   SUBTLE STAR FIELD
    ========================================================== */
 
 .projects-stars {
@@ -87,10 +88,10 @@
 .projects-back-button {
   position: absolute;
 
-  top: 26px;
+  top: 24px;
   left: 28px;
 
-  z-index: 20;
+  z-index: 30;
 
   display: inline-flex;
 
@@ -117,7 +118,7 @@
     monospace;
 
   font-size:
-    10px;
+    13px;
 
   font-weight: 400;
 
@@ -144,8 +145,6 @@
     filter 170ms ease;
 }
 
-
-/* small cyan indicator */
 
 .projects-back-button::after {
   content: "";
@@ -239,6 +238,227 @@
 
 
 /* ==========================================================
+   PROJECT FILTERS
+   ========================================================== */
+
+.projects-filters {
+  position: absolute;
+
+  top: 24px;
+
+  left: 50%;
+
+  z-index: 30;
+
+  width:
+    min(
+      1080px,
+      72vw
+    );
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  column-gap: 24px;
+
+  row-gap: 10px;
+
+  transform:
+    translateX(-50%);
+}
+
+
+
+/* ==========================================================
+   FILTER BUTTON
+   ========================================================== */
+
+.projects-filter {
+  position: relative;
+
+  margin: 0;
+
+  padding:
+    5px
+    1px
+    7px;
+
+  border: 0;
+
+  background:
+    transparent;
+
+  color:
+    rgba(
+      126,
+      169,
+      190,
+      0.50
+    );
+
+  font-family:
+    "Pixelify Sans",
+    monospace;
+
+  font-size:
+    13px;
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  letter-spacing:
+    0.10em;
+
+  white-space:
+    nowrap;
+
+  transition:
+    color 160ms ease,
+    text-shadow 160ms ease,
+    filter 160ms ease;
+}
+
+
+
+/* tiny underline */
+
+.projects-filter::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 0;
+
+  width: 0;
+
+  height: 1px;
+
+  background:
+    rgba(
+      88,
+      230,
+      255,
+      0.9
+    );
+
+  transform:
+    translateX(-50%);
+
+  box-shadow:
+    0 0 5px
+      rgba(
+        88,
+        230,
+        255,
+        0.4
+      );
+
+  transition:
+    width 170ms ease,
+    opacity 170ms ease;
+
+  opacity: 0;
+}
+
+
+
+/* ==========================================================
+   FILTER HOVER
+   ========================================================== */
+
+.projects-filter:hover {
+  color:
+    rgba(
+      220,
+      247,
+      255,
+      0.90
+    );
+
+  filter:
+    brightness(1.2);
+
+  text-shadow:
+    0 0 5px
+      rgba(
+        88,
+        230,
+        255,
+        0.28
+      );
+}
+
+
+.projects-filter:hover::after {
+  width:
+    45%;
+
+  opacity: 0.55;
+}
+
+
+
+/* ==========================================================
+   SELECTED FILTER
+   ========================================================== */
+
+.projects-filter--active {
+  color:
+    #d8f7ff;
+
+  text-shadow:
+    0 0 4px
+      rgba(
+        216,
+        247,
+        255,
+        0.50
+      ),
+
+    0 0 8px
+      rgba(
+        88,
+        230,
+        255,
+        0.28
+      );
+}
+
+
+.projects-filter--active::before {
+  content: "[";
+
+  position: absolute;
+
+  left: -8px;
+
+  color:
+    rgba(
+      88,
+      230,
+      255,
+      0.62
+    );
+}
+
+
+.projects-filter--active::after {
+  width: 70%;
+
+  opacity: 1;
+}
+
+
+
+/* ==========================================================
    SLIDER
    ========================================================== */
 
@@ -262,6 +482,12 @@
 
   perspective:
     1200px;
+
+  padding-top:
+    24px;
+
+  box-sizing:
+    border-box;
 }
 
 
@@ -398,7 +624,7 @@
       ),
 
     opacity
-      0.55s
+      0.35s
       ease,
 
     filter
@@ -415,6 +641,28 @@
 
   pointer-events:
     none;
+}
+
+
+
+/* ==========================================================
+   FILTERED OUT CARD
+   ========================================================== */
+
+.project-card--filtered-out {
+  opacity:
+    0 !important;
+
+  visibility:
+    hidden;
+
+  transform:
+    translateY(12px)
+    scale(0.94)
+    !important;
+
+  pointer-events:
+    none !important;
 }
 
 
@@ -460,9 +708,6 @@
 }
 
 
-
-/* subtle active top glow */
-
 .project-card--active::before {
   content: "";
 
@@ -496,7 +741,7 @@
 
 
 /* ==========================================================
-   HIDDEN CARD
+   HIDDEN DISTANT CARD
    ========================================================== */
 
 .project-card--hidden {
@@ -550,14 +795,9 @@
     cover;
 
   image-rendering:
-    pixelated;
+    auto;
 }
 
-
-
-/* ==========================================================
-   IMAGE SCANLINES
-   ========================================================== */
 
 .project-image::before {
   content: "";
@@ -591,11 +831,6 @@
 }
 
 
-
-/* ==========================================================
-   IMAGE EDGE TINT
-   ========================================================== */
-
 .project-image::after {
   content: "";
 
@@ -617,11 +852,9 @@
         0.08
       ),
 
-      transparent
-        32%,
+      transparent 32%,
 
-      transparent
-        68%,
+      transparent 68%,
 
       rgba(
         88,
@@ -663,21 +896,12 @@
 
   letter-spacing:
     0.13em;
-
-  text-shadow:
-    0 0 4px
-      rgba(
-        88,
-        230,
-        255,
-        0.12
-      );
 }
 
 
 
 /* ==========================================================
-   INFORMATION AREA
+   PROJECT INFORMATION
    ========================================================== */
 
 .project-information {
@@ -685,7 +909,8 @@
     125px;
 
   padding:
-    16px 18px;
+    16px
+    18px;
 
   display: grid;
 
@@ -696,7 +921,11 @@
     auto 1fr;
 
   gap:
-    7px 14px;
+    7px
+    14px;
+
+  box-sizing:
+    border-box;
 
   background:
     linear-gradient(
@@ -715,11 +944,6 @@
     );
 }
 
-
-
-/* ==========================================================
-   PROJECT TITLE
-   ========================================================== */
 
 .project-information h2 {
   grid-column: 1;
@@ -749,22 +973,8 @@
 
   letter-spacing:
     0.025em;
-
-  text-shadow:
-    0 0 4px
-      rgba(
-        88,
-        230,
-        255,
-        0.12
-      );
 }
 
-
-
-/* ==========================================================
-   PROJECT DESCRIPTION
-   ========================================================== */
 
 .project-information p {
   grid-column: 1;
@@ -791,11 +1001,6 @@
 }
 
 
-
-/* ==========================================================
-   YEAR
-   ========================================================== */
-
 .project-information span {
   grid-column: 2;
 
@@ -819,15 +1024,6 @@
 
   font-size:
     13px;
-
-  text-shadow:
-    0 0 4px
-      rgba(
-        88,
-        230,
-        255,
-        0.09
-      );
 }
 
 
@@ -853,11 +1049,6 @@
     translateX(-50%);
 }
 
-
-
-/* ==========================================================
-   ARROW BUTTONS
-   ========================================================== */
 
 .project-arrow {
   position: relative;
@@ -902,11 +1093,6 @@
 }
 
 
-
-/* ==========================================================
-   LITTLE CYAN CONTROL LINE
-   ========================================================== */
-
 .project-arrow::before {
   content: "";
 
@@ -943,11 +1129,6 @@
 }
 
 
-
-/* ==========================================================
-   ARROW HOVER
-   ========================================================== */
-
 .project-arrow:hover {
   color:
     #eafaff;
@@ -970,14 +1151,6 @@
         230,
         255,
         0.55
-      ),
-
-    0 0 17px
-      rgba(
-        88,
-        230,
-        255,
-        0.18
       );
 }
 
@@ -992,15 +1165,6 @@
       255,
       0.72
     );
-
-  box-shadow:
-    0 0 6px
-      rgba(
-        88,
-        230,
-        255,
-        0.38
-      );
 }
 
 
@@ -1015,11 +1179,6 @@
     translateX(3px);
 }
 
-
-
-/* ==========================================================
-   ARROW ACTIVE
-   ========================================================== */
 
 .project-arrow:active {
   transform:
@@ -1036,21 +1195,19 @@
 
   0%,
   42% {
-    opacity:
-      0.13;
+    opacity: 0.13;
   }
 
   43%,
   70% {
-    opacity:
-      0.23;
+    opacity: 0.23;
   }
 
   71%,
   100% {
-    opacity:
-      0.17;
+    opacity: 0.17;
   }
+
 }
 
 
@@ -1059,9 +1216,32 @@
    TABLET
    ========================================================== */
 
-@media (
-  max-width: 900px
-) {
+@media (max-width: 1050px) {
+
+  .projects-filters {
+    top: 18px;
+
+    width: 68vw;
+
+    column-gap: 18px;
+
+    row-gap: 7px;
+  }
+
+
+  .projects-filter {
+    font-size: 8px;
+  }
+
+}
+
+
+@media (max-width: 900px) {
+
+  .projects-slider {
+    padding-top: 42px;
+  }
+
 
   .project-card {
     width:
@@ -1109,14 +1289,31 @@
    MOBILE
    ========================================================== */
 
-@media (
-  max-width: 600px
-) {
+@media (max-width: 600px) {
 
   .projects-back-button {
-    top: 20px;
+    top: 18px;
 
     left: 18px;
+  }
+
+
+  .projects-filters {
+    top: 62px;
+
+    width: 92vw;
+
+    column-gap: 14px;
+
+    row-gap: 8px;
+  }
+
+
+  .projects-filter {
+    font-size: 13px;
+
+    letter-spacing:
+      1.00em;
   }
 
 
@@ -1125,6 +1322,9 @@
       calc(
         100vh - 125px
       );
+
+    padding-top:
+      80px;
   }
 
 

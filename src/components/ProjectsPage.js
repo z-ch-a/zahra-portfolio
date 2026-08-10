@@ -1,126 +1,368 @@
 import "../styles/projects.css";
 
 
+/* ==========================================================
+   FILTERS
+   ========================================================== */
+
+const filters = [
+  {
+    id: "all",
+    label: "ALL",
+  },
+
+  {
+    id: "architecture",
+    label: "ARCHITECTURE",
+  },
+
+  {
+    id: "urban-regeneration",
+    label: "URBAN REGENERATION",
+  },
+
+  {
+    id: "computational-design",
+    label: "COMPUTATIONAL DESIGN",
+  },
+
+  {
+    id: "digital-fabrication",
+    label: "DIGITAL FABRICATION",
+  },
+
+  {
+    id: "building-technology",
+    label: "BUILDING TECHNOLOGY",
+  },
+
+  {
+    id: "research",
+    label: "RESEARCH",
+  },
+];
+
+
+
+/* ==========================================================
+   PROJECTS
+
+   Categories are temporary for now.
+   We can refine them project by project later.
+   ========================================================== */
+
 const projects = [
   {
+    title: "La volta che danza!",
+
+    subtitle:
+      "Reinventing the Mediterranean shadow through digital fabrication",
+
+    year: "2026",
+
+    categories: [
+      "computational-design",
+      "digital-fabrication",
+    ],
+
+    image: "",
+
+    pages: [],
+  },
+
+
+  {
     title: "The Vena",
+
     subtitle:
       "Beyond printed objects toward architectural systems",
+
     year: "2026",
+
+    categories: [
+      "computational-design",
+      "digital-fabrication",
+      "research",
+    ],
+
     image: "",
+
+    pages: [],
   },
+
+    {
+    title: "CatEscape",
+
+    subtitle:
+      "xx",
+
+    year: "2024",
+
+    categories: [
+      "computational-design",
+      "digital-fabrication",
+    ],
+
+    image: "",
+
+    pages: [],
+  },
+
 
   {
     title: "NEXXUS",
+
     subtitle:
       "Advanced Design & Fabrication of a Free-form Shading System",
-    year: "2024",
-    image: "",
-  },
 
-  {
-    title: "FlexCo",
-    subtitle:
-      "Mixed-use commercial and coworking hub",
-    year: "2022",
+    year: "2024",
+
+    categories: [
+      "computational-design",
+      "digital-fabrication",
+      "building-technology",
+    ],
+
     image: "",
+
+    pages: [],
   },
 
   {
     title: "ISF",
+
     subtitle:
       "Research on Incremental sheet forming",
+
     year: "2024",
+
+    categories: [
+      "computational-design",
+      "digital-fabrication",
+      "research",
+    ],
+
     image: "",
+
+    pages: [],
   },
 
-  {
-    title: "CatEscape",
-    subtitle:
-      "Material-Adaptive Design System",
-    year: "2024",
-    image: "",
-  },
+   {
+    title: "Solymorph",
 
-  {
-    title: "Project Five",
     subtitle:
-      "Short description of the project",
-    year: "2025",
-    image: "",
-  },
+      "xx",
 
-  {
-    title: "Project Six",
-    subtitle:
-      "Short description of the project",
-    year: "2024",
-    image: "",
-  },
-
-  {
-    title: "Project Seven",
-    subtitle:
-      "Short description of the project",
-    year: "2024",
-    image: "",
-  },
-
-  {
-    title: "Project Eight",
-    subtitle:
-      "Short description of the project",
-    year: "2024",
-    image: "",
-  },
-
-  {
-    title: "Project Nine",
-    subtitle:
-      "Short description of the project",
     year: "2023",
+
+    categories: [
+      "computational-design",
+      "digital-fabrication",
+      "building-technology",
+    ],
+
     image: "",
-  },
+
+    pages: [],
+  }, 
 
   {
-    title: "Project Ten",
-    subtitle:
-      "Short description of the project",
-    year: "2023",
-    image: "",
-  },
+    title: "FlexCo",
 
-  {
-    title: "Project Eleven",
     subtitle:
-      "Short description of the project",
-    year: "2023",
-    image: "",
-  },
+      "Mixed-use commercial and coworking hub",
 
-  {
-    title: "Project Twelve",
-    subtitle:
-      "Short description of the project",
     year: "2022",
-    image: "",
+
+    categories: [
+      "architecture",
+      "building-technology",
+      "computational-design",
+    ],
+
+    image:
+      "/projects/Flexco/FlexcoCover.png",
+
+    pages: [
+      "/projects/Flexco/Flexco.jpg",
+      "/projects/Flexco/Flexco2.jpg",
+      "/projects/Flexco/Flexco3.jpg",
+      "/projects/Flexco/Flexco4.jpg",
+      "/projects/Flexco/Flexco5.jpg",
+      "/projects/Flexco/Flexco6.jpg",
+      "/projects/Flexco/Flexco7.jpg",
+    
+    ],
   },
 
-  {
-    title: "Project Thirteen",
-    subtitle:
-      "Short description of the project",
-    year: "2022",
-    image: "",
-  },
 
   {
-    title: "Project Fourteen",
+    title: "Healing the Cut",
+
+    subtitle:
+      "xx",
+
+    year: "2022",
+
+    categories: [
+      "architecture",
+      "building-technology",
+      "urban-regeneration",
+    ],
+
+    image: "",
+
+    pages: [],
+  },
+
+
+  {
+    title: "no Do Bovisa",
+
+    subtitle:
+      "xx",
+
+    year: "2021",
+
+    categories: [
+      "architecture",
+      "building-technology",
+      "urban-regeneration",
+    ],
+
+    image: "",
+
+    pages: [],
+  },
+
+
+  {
+    title: "Scena & Spazio",
+
+    subtitle:
+      "xx",
+
+    year: "2021",
+
+    categories: [
+      "architecture",
+    ],
+
+    image: "",
+
+    pages: [],
+  },
+
+
+  {
+    title: "A Complex",
+
+    subtitle:
+      "xxx",
+
+    year: "2021",
+
+    categories: [
+      "architecture",
+    ],
+
+    image: "",
+
+    pages: [],
+  },
+
+
+  {
+    title: "A Hospital",
+
+    subtitle:
+      "xxx",
+
+    year: "2020",
+
+    categories: [
+      "architecture",
+    ],
+
+    image: "",
+
+    pages: [],
+  },
+
+
+  {
+    title: "Il Capriccio",
+
+    subtitle:
+      "xx",
+
+    year: "2020",
+
+    categories: [
+      "architecture",
+    ],
+
+    image: "",
+
+    pages: [],
+  },
+
+
+  {
+    title: "The Shardiccolo",
+
+    subtitle:
+      "xx",
+
+    year: "2020",
+
+    categories: [
+      "architecture",
+      "building-technology",
+    ],
+
+    image: "",
+
+    pages: [],
+  },
+
+
+  {
+    title: "A School",
+
+    subtitle:
+      "xx",
+
+    year: "2019",
+
+    categories: [
+      "architecture",
+    ],
+
+    image: "",
+
+    pages: [],
+  },
+
+
+  {
+    title: "A Villa",
+
     subtitle:
       "Short description of the project",
-    year: "2022",
+
+    year: "2019",
+
+    categories: [
+      "architecture",
+    ],
+
     image: "",
+
+    pages: [],
   },
+
+
 ];
 
 
@@ -131,62 +373,95 @@ const projects = [
 
 export function createProjectsPage() {
 
-  const cards = projects
-    .map((project, index) => {
-
-      const imageStyle =
-        project.image
-          ? `style="background-image: url('${project.image}')"`
-          : "";
-
-
-      return `
-        <article
-          class="project-card"
-          data-project-index="${index}"
-          aria-hidden="true"
-          role="button"
-          tabindex="-1"
-        >
-
-          <div
-            class="project-image"
-            ${imageStyle}
+  const filterButtons =
+    filters
+      .map(
+        (filter) => `
+          <button
+            class="
+              projects-filter
+              ${
+                filter.id === "all"
+                  ? "projects-filter--active"
+                  : ""
+              }
+            "
+            type="button"
+            data-project-filter="${filter.id}"
+            aria-pressed="${
+              filter.id === "all"
+                ? "true"
+                : "false"
+            }"
           >
-
-            ${
-              project.image
-                ? ""
-                : `
-                  <span class="project-placeholder">
-                    IMAGE ${String(index + 1).padStart(2, "0")}
-                  </span>
-                `
-            }
-
-          </div>
+            ${filter.label}
+          </button>
+        `
+      )
+      .join("");
 
 
-          <div class="project-information">
+  const cards =
+    projects
+      .map(
+        (project, index) => {
 
-            <h2>
-              ${project.title}
-            </h2>
+          const imageStyle =
+            project.image
+              ? `style="background-image: url('${project.image}')"`
+              : "";
 
-            <p>
-              ${project.subtitle}
-            </p>
 
-            <span>
-              ${project.year}
-            </span>
+          return `
+            <article
+              class="project-card"
+              data-project-index="${index}"
+              aria-hidden="true"
+              role="button"
+              tabindex="-1"
+            >
 
-          </div>
+              <div
+                class="project-image"
+                ${imageStyle}
+              >
 
-        </article>
-      `;
-    })
-    .join("");
+                ${
+                  project.image
+                    ? ""
+                    : `
+                      <span class="project-placeholder">
+                        IMAGE ${String(
+                          index + 1
+                        ).padStart(2, "0")}
+                      </span>
+                    `
+                }
+
+              </div>
+
+
+              <div class="project-information">
+
+                <h2>
+                  ${project.title}
+                </h2>
+
+                <p>
+                  ${project.subtitle}
+                </p>
+
+                <span>
+                  ${project.year}
+                </span>
+
+              </div>
+
+            </article>
+          `;
+        }
+      )
+      .join("");
 
 
   return `
@@ -199,16 +474,48 @@ export function createProjectsPage() {
       <div class="projects-stars"></div>
 
 
+      <!-- ================================================
+           BACK
+           ================================================ -->
+
       <button
         class="projects-back-button"
         id="projects-back-button"
         type="button"
         aria-label="Return to homepage"
       >
-        <span class="back-arrow">&lt;</span>
-        <span>BACK</span>
+
+        <span class="back-arrow">
+          &lt;
+        </span>
+
+        <span>
+          BACK
+        </span>
+
       </button>
 
+
+
+      <!-- ================================================
+           FILTERS
+           ================================================ -->
+
+      <nav
+        class="projects-filters"
+        id="projects-filters"
+        aria-label="Filter projects"
+      >
+
+        ${filterButtons}
+
+      </nav>
+
+
+
+      <!-- ================================================
+           CAROUSEL
+           ================================================ -->
 
       <div class="projects-slider">
 
@@ -216,11 +523,18 @@ export function createProjectsPage() {
           class="projects-track"
           id="projects-track"
         >
+
           ${cards}
+
         </div>
 
       </div>
 
+
+
+      <!-- ================================================
+           CONTROLS
+           ================================================ -->
 
       <div class="projects-controls">
 
@@ -233,7 +547,11 @@ export function createProjectsPage() {
           type="button"
           aria-label="Previous project"
         >
-          <span>&lt;</span>
+
+          <span>
+            &lt;
+          </span>
+
         </button>
 
 
@@ -246,7 +564,11 @@ export function createProjectsPage() {
           type="button"
           aria-label="Next project"
         >
-          <span>&gt;</span>
+
+          <span>
+            &gt;
+          </span>
+
         </button>
 
       </div>
@@ -271,6 +593,14 @@ export function startProjectsPage() {
     );
 
 
+  const filterButtons =
+    Array.from(
+      document.querySelectorAll(
+        ".projects-filter"
+      )
+    );
+
+
   const previousButton =
     document.querySelector(
       "#project-previous"
@@ -291,6 +621,7 @@ export function startProjectsPage() {
 
   if (
     !cards.length ||
+    !filterButtons.length ||
     !previousButton ||
     !nextButton ||
     !backButton
@@ -300,33 +631,232 @@ export function startProjectsPage() {
 
 
 
-  let activeIndex = 0;
+  /* ========================================================
+     STATE
+     ======================================================== */
+
+  let activeProjectIndex = 0;
+
+  let visibleProjectIndices =
+    projects.map(
+      (_, index) => index
+    );
+
+
+  /*
+    Empty Set means ALL.
+  */
+
+  const selectedFilters =
+    new Set();
+
 
   let isAnimating = false;
 
 
 
   /* ========================================================
-     RELATIVE CARD POSITION
+     FILTER MATCH
+     ======================================================== */
+
+  function projectMatchesFilters(
+    project
+  ) {
+
+    /*
+      Nothing selected means ALL.
+    */
+
+    if (
+      selectedFilters.size === 0
+    ) {
+      return true;
+    }
+
+
+    /*
+      OR logic:
+
+      A project only needs to match
+      one selected category.
+    */
+
+    return project.categories.some(
+      (category) =>
+        selectedFilters.has(
+          category
+        )
+    );
+  }
+
+
+
+  /* ========================================================
+     BUILD VISIBLE PROJECT LIST
+     ======================================================== */
+
+  function calculateVisibleProjects() {
+
+    visibleProjectIndices =
+      projects
+        .map(
+          (project, index) => ({
+            project,
+            index,
+          })
+        )
+        .filter(
+          ({ project }) =>
+            projectMatchesFilters(
+              project
+            )
+        )
+        .map(
+          ({ index }) =>
+            index
+        );
+
+
+    /*
+      Safety fallback.
+    */
+
+    if (
+      visibleProjectIndices.length === 0
+    ) {
+
+      visibleProjectIndices =
+        projects.map(
+          (_, index) =>
+            index
+        );
+
+
+      selectedFilters.clear();
+
+    }
+
+
+
+    /*
+      If current project disappears
+      because of filtering, move to
+      first available project.
+    */
+
+    if (
+      !visibleProjectIndices.includes(
+        activeProjectIndex
+      )
+    ) {
+
+      activeProjectIndex =
+        visibleProjectIndices[0];
+
+    }
+
+  }
+
+
+
+  /* ========================================================
+     FILTER BUTTON VISUAL STATE
+     ======================================================== */
+
+  function updateFilterButtons() {
+
+    filterButtons.forEach(
+      (button) => {
+
+        const filter =
+          button.dataset.projectFilter;
+
+
+        let isActive = false;
+
+
+        if (
+          filter === "all"
+        ) {
+
+          isActive =
+            selectedFilters.size === 0;
+
+        } else {
+
+          isActive =
+            selectedFilters.has(
+              filter
+            );
+
+        }
+
+
+        button.classList.toggle(
+          "projects-filter--active",
+          isActive
+        );
+
+
+        button.setAttribute(
+          "aria-pressed",
+          isActive
+            ? "true"
+            : "false"
+        );
+
+      }
+    );
+
+  }
+
+
+
+  /* ========================================================
+     RELATIVE POSITION
      ======================================================== */
 
   function getRelativePosition(
-    cardIndex
+    projectIndex
   ) {
 
+    const cardPosition =
+      visibleProjectIndices.indexOf(
+        projectIndex
+      );
+
+
+    const activePosition =
+      visibleProjectIndices.indexOf(
+        activeProjectIndex
+      );
+
+
+    if (
+      cardPosition === -1 ||
+      activePosition === -1
+    ) {
+      return null;
+    }
+
+
     let difference =
-      cardIndex - activeIndex;
+      cardPosition -
+      activePosition;
 
 
     const total =
-      cards.length;
+      visibleProjectIndices.length;
 
 
     if (
       difference >
       total / 2
     ) {
-      difference -= total;
+
+      difference -=
+        total;
+
     }
 
 
@@ -334,7 +864,10 @@ export function startProjectsPage() {
       difference <
       -total / 2
     ) {
-      difference += total;
+
+      difference +=
+        total;
+
     }
 
 
@@ -350,10 +883,59 @@ export function startProjectsPage() {
   function updateCards() {
 
     cards.forEach(
-      (card, index) => {
+      (card, projectIndex) => {
+
+        const isVisible =
+          visibleProjectIndices.includes(
+            projectIndex
+          );
+
+
+        /*
+          FILTERED OUT
+        */
+
+        if (!isVisible) {
+
+          card.classList.add(
+            "project-card--filtered-out"
+          );
+
+
+          card.classList.remove(
+            "project-card--active"
+          );
+
+
+          card.classList.remove(
+            "project-card--hidden"
+          );
+
+
+          card.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+
+
+          card.tabIndex =
+            -1;
+
+
+          return;
+        }
+
+
+
+        card.classList.remove(
+          "project-card--filtered-out"
+        );
+
 
         const position =
-          getRelativePosition(index);
+          getRelativePosition(
+            projectIndex
+          );
 
 
         const distance =
@@ -361,7 +943,9 @@ export function startProjectsPage() {
 
 
         const isActive =
-          position === 0;
+          projectIndex ===
+          activeProjectIndex;
+
 
 
         card.classList.toggle(
@@ -377,11 +961,6 @@ export function startProjectsPage() {
             : "true"
         );
 
-
-        /*
-          Only active card can be reached
-          with keyboard.
-        */
 
         card.tabIndex =
           isActive
@@ -419,7 +998,97 @@ export function startProjectsPage() {
 
       }
     );
+
   }
+
+
+
+  /* ========================================================
+     APPLY FILTERS
+     ======================================================== */
+
+  function applyFilters() {
+
+    calculateVisibleProjects();
+
+    updateFilterButtons();
+
+    updateCards();
+
+  }
+
+
+
+  /* ========================================================
+     FILTER CLICK
+     ======================================================== */
+
+  filterButtons.forEach(
+    (button) => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          const filter =
+            button.dataset.projectFilter;
+
+
+          /*
+            ALL resets everything.
+          */
+
+          if (
+            filter === "all"
+          ) {
+
+            selectedFilters.clear();
+
+            applyFilters();
+
+            return;
+
+          }
+
+
+
+          /*
+            Toggle category.
+          */
+
+          if (
+            selectedFilters.has(
+              filter
+            )
+          ) {
+
+            selectedFilters.delete(
+              filter
+            );
+
+          } else {
+
+            selectedFilters.add(
+              filter
+            );
+
+          }
+
+
+
+          /*
+            If last selected filter was
+            removed, ALL automatically
+            becomes active.
+          */
+
+          applyFilters();
+
+        }
+      );
+
+    }
+  );
 
 
 
@@ -432,22 +1101,36 @@ export function startProjectsPage() {
   ) {
 
     if (
-      isAnimating
+      isAnimating ||
+      visibleProjectIndices.length <= 1
     ) {
       return;
     }
 
 
-    isAnimating = true;
+    isAnimating =
+      true;
 
 
-    activeIndex =
+    const currentPosition =
+      visibleProjectIndices.indexOf(
+        activeProjectIndex
+      );
+
+
+    const nextPosition =
       (
-        activeIndex +
+        currentPosition +
         direction +
-        cards.length
+        visibleProjectIndices.length
       ) %
-      cards.length;
+      visibleProjectIndices.length;
+
+
+    activeProjectIndex =
+      visibleProjectIndices[
+        nextPosition
+      ];
 
 
     updateCards();
@@ -462,6 +1145,7 @@ export function startProjectsPage() {
       },
       550
     );
+
   }
 
 
@@ -470,21 +1154,20 @@ export function startProjectsPage() {
      OPEN PROJECT
      ======================================================== */
 
-  function openProject(index) {
+  function openProject(
+    projectIndex
+  ) {
 
     const card =
-      cards[index];
+      cards[
+        projectIndex
+      ];
 
 
     if (!card) {
       return;
     }
 
-
-    /*
-      Only the currently selected
-      center card can be opened.
-    */
 
     if (
       !card.classList.contains(
@@ -496,7 +1179,9 @@ export function startProjectsPage() {
 
 
     const project =
-      projects[index];
+      projects[
+        projectIndex
+      ];
 
 
     if (!project) {
@@ -504,43 +1189,38 @@ export function startProjectsPage() {
     }
 
 
-    /*
-      This event is received by
-      ProjectWindow.js
-    */
-
     window.dispatchEvent(
       new CustomEvent(
         "portfolio:open-project",
         {
-          detail: project,
+          detail:
+            project,
         }
       )
     );
+
   }
 
 
 
   /* ========================================================
-     CARD CLICK
+     PROJECT CARD EVENTS
      ======================================================== */
 
   cards.forEach(
-    (card, index) => {
+    (card, projectIndex) => {
 
       card.addEventListener(
         "click",
         () => {
 
-          openProject(index);
+          openProject(
+            projectIndex
+          );
 
         }
       );
 
-
-      /*
-        Keyboard support
-      */
 
       card.addEventListener(
         "keydown",
@@ -553,7 +1233,10 @@ export function startProjectsPage() {
 
             event.preventDefault();
 
-            openProject(index);
+
+            openProject(
+              projectIndex
+            );
 
           }
 
@@ -596,7 +1279,7 @@ export function startProjectsPage() {
 
 
   /* ========================================================
-     BACK TO HOMEPAGE
+     BACK
      ======================================================== */
 
   backButton.addEventListener(
@@ -636,7 +1319,7 @@ export function startProjectsPage() {
 
 
   /* ========================================================
-     KEYBOARD CAROUSEL
+     KEYBOARD NAVIGATION
      ======================================================== */
 
   window.addEventListener(
@@ -649,11 +1332,6 @@ export function startProjectsPage() {
         );
 
 
-      /*
-        Do nothing if Projects
-        page is not visible.
-      */
-
       if (
         !projectsPage ||
         projectsPage.hidden
@@ -662,9 +1340,10 @@ export function startProjectsPage() {
       }
 
 
+
       /*
         Do not move carousel while
-        project window is open.
+        portfolio window is open.
       */
 
       const projectWindow =
@@ -679,6 +1358,7 @@ export function startProjectsPage() {
       ) {
         return;
       }
+
 
 
       if (
@@ -712,6 +1392,10 @@ export function startProjectsPage() {
   /* ========================================================
      INITIAL STATE
      ======================================================== */
+
+  calculateVisibleProjects();
+
+  updateFilterButtons();
 
   updateCards();
 
